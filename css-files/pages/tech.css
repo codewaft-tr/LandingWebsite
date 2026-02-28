@@ -1,0 +1,209 @@
+/* ============================================
+   CODEWAFT — Tech Stack Page
+   Neural Interface
+   ============================================ */
+
+.tech-hero {
+  padding: var(--space-4xl) 0;
+  text-align: center;
+}
+
+/* Tech Categories */
+.tech-categories {
+  padding: var(--space-3xl) 0;
+}
+.tech-category {
+  margin-bottom: var(--space-4xl);
+}
+.tech-category-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+}
+.tech-category-line {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+.tech-category-name {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+/* Tech Cards Grid */
+.tech-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--space-md);
+}
+.tech-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.4s var(--ease-out-expo);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.tech-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transition: transform 0.4s var(--ease-out-expo);
+}
+.tech-card:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.4);
+  background: rgba(var(--color-accent-rgb), 0.04);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06), var(--shadow-glow);
+}
+.tech-card:hover::before {
+  transform: scaleX(1);
+}
+
+.tech-card-icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-md);
+  transition: transform var(--transition-base);
+}
+.tech-card:hover .tech-card-icon {
+  transform: scale(1.1);
+}
+.tech-card-name {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-primary);
+  margin-bottom: 0.25rem;
+}
+.tech-card-type {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+/* Proficiency Bar */
+.tech-proficiency {
+  width: 100%;
+  margin-top: var(--space-md);
+}
+.tech-proficiency-bar {
+  width: 100%;
+  height: 2px;
+  background: var(--color-border);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+.tech-proficiency-fill {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: var(--radius-pill);
+  transition: width 1s var(--ease-out-expo);
+  box-shadow: 0 0 6px rgba(var(--color-accent-rgb), 0.5);
+}
+
+/* Integration Map */
+.integration-section {
+  padding: var(--space-5xl) 0;
+  text-align: center;
+}
+.integration-map {
+  position: relative;
+  max-width: 800px;
+  margin: var(--space-3xl) auto 0;
+  aspect-ratio: 1;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+}
+.integration-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px; height: 120px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  color: var(--color-accent);
+  background: rgba(var(--color-accent-rgb), 0.05);
+  z-index: 2;
+}
+.integration-node {
+  position: absolute;
+  width: 60px; height: 60px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  background: var(--color-bg-surface);
+  transition: all var(--transition-base);
+}
+.integration-node:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-glow);
+  transform: scale(1.15);
+}
+
+/* Philosophy */
+.tech-philosophy {
+  padding: var(--space-5xl) 0;
+  text-align: center;
+}
+.philosophy-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+.philosophy-card {
+  padding: var(--space-2xl);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-align: left;
+  transition: all var(--transition-base);
+}
+.philosophy-card:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.3);
+}
+.philosophy-num {
+  font-family: var(--font-mono);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: rgba(var(--color-accent-rgb), 0.15);
+  margin-bottom: var(--space-md);
+}
+.philosophy-title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-sm);
+}
+.philosophy-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .philosophy-cards {
+    grid-template-columns: 1fr;
+  }
+}

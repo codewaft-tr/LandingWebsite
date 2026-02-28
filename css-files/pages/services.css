@@ -1,0 +1,261 @@
+/* ============================================
+   CODEWAFT — Services Page
+   Interactive Console / Control Panel
+   ============================================ */
+
+/* --- Services Console --- */
+.services-console {
+  padding: var(--space-4xl) 0;
+}
+
+/* Neural Network Background */
+.neural-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+/* Service Nodes Grid */
+.service-nodes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+
+.service-module {
+  position: relative;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+  transition: all 0.5s var(--ease-out-expo);
+}
+.service-module::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(var(--color-accent-rgb), 0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.service-module:hover::before {
+  opacity: 1;
+}
+.service-module:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08), var(--shadow-glow);
+}
+
+/* Module Header */
+.module-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg) var(--space-xl);
+  border-bottom: 1px solid var(--color-border);
+}
+.module-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-success);
+}
+.module-id {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Module Body */
+.module-body {
+  padding: var(--space-xl);
+}
+.module-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 1px solid rgba(var(--color-accent-rgb), 0.2);
+  border-radius: var(--radius-md);
+  background: rgba(var(--color-accent-rgb), 0.05);
+  color: var(--color-accent);
+  margin-bottom: var(--space-lg);
+  transition: all var(--transition-base);
+}
+.service-module:hover .module-icon {
+  background: rgba(var(--color-accent-rgb), 0.1);
+  box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.15);
+  border-color: rgba(var(--color-accent-rgb), 0.4);
+}
+.module-title {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-primary);
+}
+.module-description {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+}
+
+/* Module Features */
+.module-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.module-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  padding: 0.5rem 0;
+}
+.module-feature::before {
+  content: '›';
+  color: var(--color-accent);
+  font-size: 1.2em;
+}
+
+/* Module Footer */
+.module-footer {
+  padding: var(--space-md) var(--space-xl);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.module-tech {
+  display: flex;
+  gap: 0.5rem;
+}
+.module-tech-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+}
+.module-link {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap var(--transition-fast);
+}
+.module-link:hover {
+  gap: 0.75rem;
+}
+
+/* --- Service Detail Panel (expanded) --- */
+.service-detail-panel {
+  position: fixed;
+  top: 0; right: -100%;
+  width: 500px;
+  max-width: 90vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(30px);
+  border-left: 1px solid var(--color-border);
+  z-index: var(--z-modal);
+  padding: var(--space-3xl);
+  overflow-y: auto;
+  transition: right 0.5s var(--ease-out-expo);
+}
+.service-detail-panel.open {
+  right: 0;
+}
+.service-detail-close {
+  position: absolute;
+  top: var(--space-xl);
+  right: var(--space-xl);
+  width: 40px; height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.service-detail-close:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* --- Capabilities Marquee --- */
+.capabilities-marquee {
+  padding: var(--space-3xl) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+/* --- Tech Stack Section --- */
+.tech-stack-section {
+  padding: var(--space-5xl) 0;
+}
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+}
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--space-lg) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+.tech-item:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.3);
+  color: var(--color-accent);
+  background: rgba(var(--color-accent-rgb), 0.03);
+}
+.tech-item-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .service-nodes-grid {
+    grid-template-columns: 1fr;
+  }
+}

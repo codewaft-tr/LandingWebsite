@@ -1,0 +1,2614 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="CodeWaft — AI-powered software studio. We build intelligent agents, machine learning systems, and next-generation digital experiences for ambitious companies.">
+  <meta name="theme-color" content="#F8FAFC">
+  <title>CodeWaft — AI-Powered Software Studio</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css-files/global.css">
+  <link rel="stylesheet" href="css-files/layout.css">
+  <link rel="stylesheet" href="css-files/animations.css">
+  <link rel="stylesheet" href="css-files/pages/home.css">
+  <link rel="stylesheet" href="css-files/pages/experience.css">
+
+  <style>
+    /* Initial hero element states (before animation) */
+    .hero-badge {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-subtitle {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-cta-group {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-scroll {
+      opacity: 0;
+    }
+
+    /* Fallback: if JS modules fail, still show content after 3s */
+    @keyframes reveal-fallback {
+      to {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    .no-module-js .reveal,
+    .no-module-js .reveal-left,
+    .no-module-js .reveal-right,
+    .no-module-js .reveal-scale,
+    .no-module-js .stagger-children>* {
+      animation: reveal-fallback 0.6s ease forwards;
+      animation-delay: 0.3s;
+    }
+
+    /* CSS-only loader fallback: disappear after 4s even without JS */
+    @keyframes loader-fallback-hide {
+
+      0%,
+      90% {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+
+    .loader-screen {
+      animation: loader-fallback-hide 4s ease forwards;
+    }
+
+    .loader-screen.loaded {
+      animation: none;
+    }
+
+    /* JARVIS HUD Hero */
+    .jarvis-hud-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader-screen">
+    <div class="loader-logo">CODE<span>WAFT</span></div>
+    <div class="loader-bar-container">
+      <div class="loader-bar"></div>
+    </div>
+    <div class="loader-status">Initializing…</div>
+  </div>
+
+  <!-- Noise Overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- Grid Background -->
+  <div class="grid-bg"></div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress"></div>
+
+  <!-- Jarvis AI Assistant -->
+  <div class="jarvis-container" id="jarvis">
+    <div class="jarvis-orb">
+      <div class="jarvis-ring jarvis-ring-1"></div>
+      <div class="jarvis-ring jarvis-ring-2"></div>
+      <div class="jarvis-core"></div>
+    </div>
+    <div class="jarvis-bubble" id="jarvis-bubble">
+      <span class="jarvis-text" id="jarvis-text"></span>
+      <div class="jarvis-typing">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lab Power Indicator -->
+  <div class="lab-power">
+    <div class="lab-power-bar">
+      <div class="lab-power-fill"></div>
+    </div>
+    <span class="lab-power-label">Güc</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-bracket">{</span>CW<span class="logo-dot">.</span><span class="logo-bracket">}</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active">Ana Sayfa</a></li>
+        <li><a href="html-files/about.html" class="nav-link">Hakkımızda</a></li>
+        <li><a href="html-files/services.html" class="nav-link">Hizmetler</a></li>
+        <li><a href="html-files/process.html" class="nav-link">Süreçlerimiz</a></li>
+        <li><a href="html-files/projects.html" class="nav-link">Projeler</a></li>
+      </ul>
+      <a href="html-files/contact.html" class="nav-cta magnetic">Bize Ulaşın →</a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="nav-mobile">
+    <a href="index.html" class="nav-link">Ana Sayfa</a>
+    <a href="html-files/about.html" class="nav-link">Hakkımızda</a>
+    <a href="html-files/services.html" class="nav-link">Hizmetler</a>
+    <a href="html-files/process.html" class="nav-link">Süreçlerimiz</a>
+    <a href="html-files/projects.html" class="nav-link">Projeler</a>
+    <a href="html-files/tech.html" class="nav-link">Teknolojiler</a>
+    <a href="html-files/contact.html" class="nav-link">İletişim</a>
+  </div>
+
+  <!-- Boot Sequence Messages -->
+  <div class="boot-sequence">
+    <div class="boot-line">› Yapay Zeka Modelleri Yükleniyor… <span class="ok">OK</span></div>
+    <div class="boot-line">› Sinir Aglari Baglaniyor… <span class="ok">OK</span></div>
+    <div class="boot-line">› Ajanlar Hazir… <span class="ok">OK</span></div>
+    <div class="boot-line">› Arayüz Hazir <span class="ok">✓</span></div>
+  </div>
+
+  <!-- Page Wrapper -->
+  <div class="page-wrapper">
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero" id="hero">
+      <canvas class="jarvis-hud-canvas" id="jarvis-hud-canvas"></canvas>
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="status-dot"></span>
+          Yapay Zeka Destekli — Geleceği İnşa Ediyoruz
+        </div>
+
+        <h1 class="hero-title">
+          <span class="line"><span class="line-inner"><span class="gradient-text">Yazılım</span></span></span>
+          <span class="line"><span class="line-inner">Stüdyosu</span></span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Düşünen, öğrenen ve ölçeklenen yapay zeka ajanları, makine öğrenimi boru hatları ve akıllı yazılımlar inşa
+          ediyoruz — teknolojinin yeni çağı için özel olarak tasarlandı.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="html-files/services.html" class="btn btn-primary magnetic">
+            Yapay Zeka Hizmetlerimizi Keşfedin <span class="btn-icon">→</span>
+          </a>
+          <a href="html-files/projects.html" class="btn magnetic">
+            Çalışmalarımızı Görün <span class="btn-icon">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-scroll">
+        <div class="hero-scroll-line"></div>
+        <span class="hero-scroll-text">Keşfetmek için kaydırın</span>
+      </div>
+    </section>
+
+    <!-- ==================== SERVICES PREVIEW ==================== -->
+    <section class="home-section section" id="services-preview">
+      <div class="container">
+        <div class="section-label">Neler İnşa Ediyoruz</div>
+        <h2 class="reveal"><span class="gradient-text">Hizmetlerimiz</span></h2>
+        <p class="reveal" style="margin-top: var(--space-md);">Yapay zeka ve modern mimari ile güçlendirilmiş uçtan uca
+          akıllı çözümler.</p>
+
+        <div class="services-preview stagger-children">
+          <div class="service-node reveal">
+            <div class="service-node-icon">⚡</div>
+            <div class="service-node-title">Arka Uç (Backend) Sistemleri</div>
+            <div class="service-node-desc">Kurumsal düzeyde güvenilirlik için inşa edilmiş ölçeklenebilir mimariler,
+              mikro hizmetler ve yüksek performanslı API'ler.</div>
+          </div>
+          <div class="service-node reveal">
+            <div class="service-node-icon">◈</div>
+            <div class="service-node-title">Ön Yüz (Frontend) Mühendisliği</div>
+            <div class="service-node-desc">Hassasiyetle hazırlanmış sürükleyici arayüzler — performanslı, erişilebilir
+              ve görsel olarak olağanüstü.</div>
+          </div>
+          <div class="service-node reveal">
+            <div class="service-node-icon">📱</div>
+            <div class="service-node-title">Mobil Uygulamalar</div>
+            <div class="service-node-desc">Akıcı, hızlı ve premium hissettiren yerel ve çapraz platform mobil
+              deneyimler.</div>
+          </div>
+          <div class="service-node reveal">
+            <div class="service-node-icon">🤖</div>
+            <div class="service-node-title">Yapay Zeka & Makine Öğrenimi Sistemleri</div>
+            <div class="service-node-desc">Derin öğrenme modelleri, RAG boru hatları ve öğrenen ve adapte olan akıllı
+              sohbet botları.</div>
+          </div>
+          <div class="service-node reveal">
+            <div class="service-node-icon">⚙️</div>
+            <div class="service-node-title">n8n Otomasyonları</div>
+            <div class="service-node-desc">Manuel işleri ortadan kaldıran ve operasyonları büyük ölçekte hızlandıran iş
+              akışı otomasyonu.</div>
+          </div>
+          <div class="service-node reveal">
+            <div class="service-node-icon">☁️</div>
+            <div class="service-node-title">Bulut Çözümleri</div>
+            <div class="service-node-desc">En yüksek performans ve maliyet verimliliği için bulut mimarisi, optimizasyon
+              ve dağıtım stratejileri.</div>
+          </div>
+          <div class="service-node reveal">
+            <div class="service-node-icon">📊</div>
+            <div class="service-node-title">Veri Analitiği & Görselleştirme</div>
+            <div class="service-node-desc">Etkileşimli panolar, gerçek zamanlı analitik ve özel raporlama boru hatları
+              ile ham verileri eyleme dönüştürülebilir içgörülere dönüştürün.</div>
+          </div>
+          <div class="service-node reveal">
+            <div class="service-node-icon">🔒</div>
+            <div class="service-node-title">DevOps</div>
+            <div class="service-node-desc">Güvenilir, ölçeklenebilir teslimat için CI/CD boru hatları, kod olarak
+              altyapı, konteyner orkestrasyonu ve otomatik dağıtım iş akışları.</div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-3xl);" class="reveal">
+          <a href="html-files/services.html" class="btn magnetic">Tüm Hizmetleri Keşfedin <span
+              class="btn-icon">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== STATS BAR ==================== -->
+    <section class="section">
+      <div class="container">
+        <div class="stats-bar reveal">
+          <div class="stat-item">
+            <div class="stat-number" data-count="50" data-suffix="+">0</div>
+            <div class="stat-label">Başlatılan Projeler</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-count="8" data-suffix="">0</div>
+            <div class="stat-label">Yapay Zeka Hizmetleri</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-count="99" data-suffix="%">0</div>
+            <div class="stat-label">Çalışma Süresi (SLA)</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-count="4" data-suffix="">0</div>
+            <div class="stat-label">Takım Üyeleri</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== MARQUEE ==================== -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="marquee-item">Arka Uç Geliştirme <span class="sep">◆</span></span>
+        <span class="marquee-item">Ön Yüz Mühendisliği <span class="sep">◆</span></span>
+        <span class="marquee-item">Mobil Uygulamalar <span class="sep">◆</span></span>
+        <span class="marquee-item">Yapay Zeka / Makine Öğrenimi Sistemleri <span class="sep">◆</span></span>
+        <span class="marquee-item">n8n Otomasyonları <span class="sep">◆</span></span>
+        <span class="marquee-item">Bulut Çözümleri <span class="sep">◆</span></span>
+        <span class="marquee-item">RAG Boru Hatları <span class="sep">◆</span></span>
+        <span class="marquee-item">Sohbet Botu Sistemleri <span class="sep">◆</span></span>
+        <!-- Duplicate for seamless loop -->
+        <span class="marquee-item">Arka Uç Geliştirme <span class="sep">◆</span></span>
+        <span class="marquee-item">Ön Yüz Mühendisliği <span class="sep">◆</span></span>
+        <span class="marquee-item">Mobil Uygulamalar <span class="sep">◆</span></span>
+        <span class="marquee-item">Yapay Zeka / Makine Öğrenimi Sistemleri <span class="sep">◆</span></span>
+        <span class="marquee-item">n8n Otomasyonları <span class="sep">◆</span></span>
+        <span class="marquee-item">Bulut Çözümleri <span class="sep">◆</span></span>
+        <span class="marquee-item">RAG Boru Hatları <span class="sep">◆</span></span>
+        <span class="marquee-item">Sohbet Botu Sistemleri <span class="sep">◆</span></span>
+      </div>
+    </div>
+
+    <!-- ==================== 3D PLAYGROUND ==================== -->
+    <section class="home-section section" id="experience-lab">
+      <div class="container">
+        <div class="section-label">İnteraktif Deneyim</div>
+        <h2 class="reveal">3D <span class="gradient-text">Oyun Alanı</span></h2>
+        <p class="reveal" style="margin-top: var(--space-md); max-width: 600px;">Tut, döndür ve keşfet — tarayıcınızda
+          gerçek zamanlı 3D grafikler.</p>
+
+        <div class="experience-grid" style="margin-top: var(--space-2xl);">
+
+          <!-- 1. TORUS KNOT -->
+          <div class="exp-card showcase-item reveal-scale" data-shape="torusKnot">
+            <canvas class="exp-card-canvas showcase-canvas" id="showcase-torus"></canvas>
+            <div class="exp-card-info">
+              <div class="exp-card-tag">İnteraktif 3D</div>
+              <h3 class="exp-card-title">Torus Düğümü</h3>
+              <p class="exp-card-desc">Tel kafes torus düğümü — döndürmek için sürükleyin.</p>
+              <div class="exp-specs">
+                <span class="exp-spec"><span class="exp-spec-dot"></span>Three.js</span>
+                <span class="exp-spec"><span class="exp-spec-dot"></span>Döndürmek için Sürükle</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. GEODESIC SPHERE -->
+          <div class="exp-card showcase-item reveal-scale" data-shape="sphere">
+            <canvas class="exp-card-canvas showcase-canvas" id="showcase-sphere"></canvas>
+            <div class="exp-card-info">
+              <div class="exp-card-tag">İnteraktif 3D</div>
+              <h3 class="exp-card-title">Geodezik Küre</h3>
+              <p class="exp-card-desc">İkozahedral küre — döndürmek için sürükleyin.</p>
+              <div class="exp-specs">
+                <span class="exp-spec"><span class="exp-spec-dot"></span>İkozahedron</span>
+                <span class="exp-spec"><span class="exp-spec-dot"></span>Döndürmek için Sürükle</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. DIAMOND LATTICE -->
+          <div class="exp-card showcase-item reveal-scale" data-shape="diamond">
+            <canvas class="exp-card-canvas showcase-canvas" id="showcase-diamond"></canvas>
+            <div class="exp-card-info">
+              <div class="exp-card-tag">İnteraktif 3D</div>
+              <h3 class="exp-card-title">Elmas Kafes</h3>
+              <p class="exp-card-desc">Camgöbeği oktahedron — döndürmek için sürükleyin.</p>
+              <div class="exp-specs">
+                <span class="exp-spec"><span class="exp-spec-dot"></span>Oktahedron</span>
+                <span class="exp-spec"><span class="exp-spec-dot"></span>Döndürmek için Sürükle</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. SHAPE MORPHING ENGINE -->
+          <div class="exp-card reveal-scale">
+            <canvas class="exp-card-canvas" id="exp-morph"></canvas>
+            <div class="exp-card-info">
+              <div class="exp-card-tag">Prosedürel Geometri</div>
+              <h3 class="exp-card-title">Şekil Dönüşümü</h3>
+              <p class="exp-card-desc">Köşe yer değiştirmesi ile primitifler arasında geçiş yapar.</p>
+              <div class="exp-specs">
+                <span class="exp-spec"><span class="exp-spec-dot"></span>GLSL</span>
+                <span class="exp-spec"><span class="exp-spec-dot"></span>60 FPS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. PARTICLE GALAXY -->
+          <div class="exp-card reveal-scale">
+            <canvas class="exp-card-canvas" id="exp-galaxy"></canvas>
+            <div class="exp-card-info">
+              <div class="exp-card-tag">Parçacık Sistemleri</div>
+              <h3 class="exp-card-title">Parçacık Galaksisi</h3>
+              <p class="exp-card-desc">Prosedürel sarmal galaksi oluşturan 10B parçacık.</p>
+              <div class="exp-specs">
+                <span class="exp-spec"><span class="exp-spec-dot"></span>WebGL</span>
+                <span class="exp-spec"><span class="exp-spec-dot"></span>GPU</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. WAVE TERRAIN -->
+          <div class="exp-card reveal-scale">
+            <canvas class="exp-card-canvas" id="exp-terrain"></canvas>
+            <div class="exp-card-info">
+              <div class="exp-card-tag">Prosedürel Arazi</div>
+              <h3 class="exp-card-title">Dalga Arazisi</h3>
+              <p class="exp-card-desc">Yüksekliğe göre renklenmiş sinüs dalgalı düzlem.</p>
+              <div class="exp-specs">
+                <span class="exp-spec"><span class="exp-spec-dot"></span>Köşe Değişimi</span>
+                <span class="exp-spec"><span class="exp-spec-dot"></span>Dinamik Renk</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. DNA DOUBLE HELIX -->
+          <div class="exp-card reveal-scale">
+            <canvas class="exp-card-canvas" id="exp-dna"></canvas>
+            <div class="exp-card-info">
+              <div class="exp-card-tag">Veri Görselleştirme</div>
+              <h3 class="exp-card-title">DNA Sarmalı</h3>
+              <p class="exp-card-desc">Baz çifti bağlantılarına sahip prosedürel çift sarmal.</p>
+              <div class="exp-specs">
+                <span class="exp-spec"><span class="exp-spec-dot"></span>Prosedürel</span>
+                <span class="exp-spec"><span class="exp-spec-dot"></span>Örneklenmiş</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. GRAVITY PLAYGROUND (full width) -->
+          <div class="exp-card exp-card-full reveal-scale">
+            <canvas class="exp-card-canvas" id="exp-physics"></canvas>
+            <div class="exp-card-info">
+              <div class="exp-card-tag">Fizik Simülasyonu</div>
+              <h3 class="exp-card-title">Yerçekimi Oyun Alanı</h3>
+              <p class="exp-card-desc">Gerçek zamanlı çarpışmalar ile objeler oluşturmak için tıklayın.</p>
+              <div class="exp-controls">
+                <button class="exp-control-btn active" data-spawn="sphere">Küre</button>
+                <button class="exp-control-btn" data-spawn="cube">Küp</button>
+                <button class="exp-control-btn" data-spawn="pyramid">Piramit</button>
+                <button class="exp-control-btn" data-reset="true">Sıfırla</button>
+              </div>
+              <div class="exp-specs">
+                <span class="exp-spec"><span class="exp-spec-dot"></span>Fizik</span>
+                <span class="exp-spec"><span class="exp-spec-dot"></span>Çarpışma</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== GAME PLAYGROUND ==================== -->
+    <section class="home-section section" id="game-playground">
+      <div class="container">
+        <div class="section-label">İnteraktif Eğlence</div>
+        <h2 class="reveal">Oyun <span class="gradient-text">Alanı</span></h2>
+        <p class="reveal" style="margin-top: var(--space-md);">Biraz mola verin — tarayıcıda doğrudan gerçek fizik ile
+          inşa edilmiş mini oyunlarımızı oynayın.</p>
+
+        <div class="games-grid reveal-scale">
+          <!-- Soccer Goal -->
+          <div class="game-card" id="game-soccer">
+            <canvas class="game-canvas" id="soccer-canvas"></canvas>
+            <div class="game-overlay">
+              <span class="game-title">⚽ Gol Vuruşu</span>
+              <span class="game-hint">Şut çekmek için tıkla & sürükle!</span>
+              <span class="game-score" id="soccer-score">Skor: 0</span>
+            </div>
+          </div>
+          <!-- Basketball -->
+          <div class="game-card" id="game-basketball">
+            <canvas class="game-canvas" id="basketball-canvas"></canvas>
+            <div class="game-overlay">
+              <span class="game-title">🏀 Basket At</span>
+              <span class="game-hint">Fırlatmak için tıkla & sürükle!</span>
+              <span class="game-score" id="basketball-score">Skor: 0</span>
+            </div>
+          </div>
+          <!-- Bowling -->
+          <div class="game-card" id="game-bowling">
+            <canvas class="game-canvas" id="bowling-canvas"></canvas>
+            <div class="game-overlay">
+              <span class="game-title">🎳 Lobutları Devir</span>
+              <span class="game-hint">Fırlatmak için tıkla & sürükle!</span>
+              <span class="game-score" id="bowling-score">Lobut: 0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROJECTS PREVIEW ==================== -->
+    <section class="home-section section" id="projects-preview">
+      <div class="container">
+        <div class="section-label">Öne Çıkan Çalışmalar</div>
+        <h2 class="reveal">Seçilmiş <span class="gradient-text">Projeler</span></h2>
+        <p class="reveal" style="margin-top: var(--space-md);">Ölçülebilir etki yaratan gerçek yapay zeka destekli
+          çözümler.</p>
+
+        <div class="projects-preview">
+          <div class="project-capsule reveal-scale">
+            <img class="project-capsule-img"
+              src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=380&fit=crop"
+              alt="Neural Commerce Engine" />
+            <div class="project-capsule-bg"></div>
+            <div class="project-capsule-content">
+              <div class="project-capsule-tag">Yapay Zeka / Otomasyon</div>
+              <div class="project-capsule-title">Nöral Ticaret Motoru</div>
+              <div class="project-capsule-desc">Yapay zeka destekli e-ticaret öneri sistemi</div>
+            </div>
+          </div>
+          <div class="project-capsule reveal-scale">
+            <img class="project-capsule-img"
+              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=380&fit=crop"
+              alt="Distributed Mesh Platform" />
+            <div class="project-capsule-bg"
+              style="background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(99,102,241,0.05));"></div>
+            <div class="project-capsule-content">
+              <div class="project-capsule-tag">Bulut / Arka Uç</div>
+              <div class="project-capsule-title">Dağıtılmış Ağ Platformu</div>
+              <div class="project-capsule-desc">Günde 10M+ isteği işleyen mikro hizmetler mimarisi</div>
+            </div>
+          </div>
+          <div class="project-capsule reveal-scale">
+            <img class="project-capsule-img"
+              src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&h=380&fit=crop"
+              alt="Pulse Health Tracker" />
+            <div class="project-capsule-bg"
+              style="background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(6,182,212,0.05));"></div>
+            <div class="project-capsule-content">
+              <div class="project-capsule-tag">Mobil / UX</div>
+              <div class="project-capsule-title">Pulse Sağlık Takipçisi</div>
+              <div class="project-capsule-desc">Gerçek zamanlı sağlık izleme mobil uygulaması</div>
+            </div>
+          </div>
+          <div class="project-capsule reveal-scale">
+            <img class="project-capsule-img"
+              src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&h=380&fit=crop"
+              alt="Sentinel Support AI" />
+            <div class="project-capsule-bg"
+              style="background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.05));"></div>
+            <div class="project-capsule-content">
+              <div class="project-capsule-tag">Sohbet Botu / RAG</div>
+              <div class="project-capsule-title">Sentinel Destek Yapay Zekası</div>
+              <div class="project-capsule-desc">RAG boru hattına sahip bağlamsal destek sohbet botu</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-3xl);" class="reveal">
+          <a href="html-files/projects.html" class="btn magnetic">Tüm Projeleri Görüntüle <span
+              class="btn-icon">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT US — UNIFIED ==================== -->
+    <section class="home-section section" id="about-preview">
+      <div class="container">
+        <div class="section-label">Hakkımızda</div>
+        <h2 class="reveal">Küçük Takım, <span class="gradient-text">Büyük Etki</span></h2>
+        <p class="reveal" style="margin-top: var(--space-md); max-width: 680px;">Odaklanmış, yüksek hızlı bir
+          mühendislik ekibiyiz — kurumsal düzeyde ürünleri startup hızıyla sunuyoruz. Katman yok. Gereksiz masraf yok.
+          Saf
+          icraat.</p>
+
+        <!-- Stats Bar -->
+        <div class="about-combined-stats reveal" style="margin-top: var(--space-2xl);">
+          <div class="about-metric">
+            <div class="about-metric-val" data-count="4">0</div>
+            <div class="about-metric-label">Takım Üyeleri</div>
+          </div>
+          <div class="about-metric">
+            <div class="about-metric-val" data-count="8" data-suffix="+">0</div>
+            <div class="about-metric-label">Temel Hizmetler</div>
+          </div>
+          <div class="about-metric">
+            <div class="about-metric-val" data-count="12" data-suffix="+">0</div>
+            <div class="about-metric-label">Hizmet Verilen Ülkeler</div>
+          </div>
+          <div class="about-metric">
+            <div class="about-metric-val" data-count="24" data-suffix="/7">0</div>
+            <div class="about-metric-label">Erişilebilirlik</div>
+          </div>
+          <div class="about-metric">
+            <div class="about-metric-val" data-count="100" data-suffix="%">0</div>
+            <div class="about-metric-label">Müşteri Elde Tutma</div>
+          </div>
+        </div>
+
+        <!-- Team Grid -->
+        <div style="margin-top: var(--space-3xl);">
+          <h3 class="reveal" style="text-align: center; margin-bottom: var(--space-xl);">Tüm Bunların Arkasındaki <span
+              class="gradient-text">Zihinler</span></h3>
+          <div class="team-grid stagger-children">
+            <div class="team-card reveal">
+              <div class="team-avatar-photo">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face"
+                  alt="Alex Chen" />
+              </div>
+              <div class="team-info">
+                <h4 class="team-name">Alex Chen</h4>
+                <span class="team-role">Kıdemli Geliştirici</span>
+              </div>
+            </div>
+            <div class="team-card reveal">
+              <div class="team-avatar-photo">
+                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop&crop=face"
+                  alt="Sarah Park" />
+              </div>
+              <div class="team-info">
+                <h4 class="team-name">Sarah Park</h4>
+                <span class="team-role">Genç Geliştirici</span>
+              </div>
+            </div>
+            <div class="team-card reveal">
+              <div class="team-avatar-photo">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face"
+                  alt="Marcus Silva" />
+              </div>
+              <div class="team-info">
+                <h4 class="team-name">Marcus Silva</h4>
+                <span class="team-role">Genç Geliştirici</span>
+              </div>
+            </div>
+            <div class="team-card reveal">
+              <div class="team-avatar-photo">
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face"
+                  alt="Emma Johansson" />
+              </div>
+              <div class="team-info">
+                <h4 class="team-name">Emma Johansson</h4>
+                <span class="team-role">Pazarlama Müdürü</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Global Reach with Globe -->
+        <div style="margin-top: var(--space-3xl);">
+          <div class="globe-section-grid">
+            <div class="globe-text reveal">
+              <h3><span class="gradient-text">Her Yerde</span> Çalışıyoruz</h3>
+              <p style="margin-top: var(--space-md);">Uzaktan çalışma öncelikli. Saat dilimi esnek. Silikon Vadisi
+                girişimlerinden Avrupa şirketlerine kadar dünya çapında şirketlerle ortaklık yapıyoruz.</p>
+              <a href="html-files/about.html" class="btn magnetic" style="margin-top: var(--space-lg);">Hakkımızda
+                Daha Fazla Bilgi Edinin <span class="btn-icon">→</span></a>
+            </div>
+            <div class="globe-canvas-wrap reveal-scale" id="globe-container">
+              <canvas id="globe-canvas"></canvas>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== TECHNOLOGY SHOWCASE ==================== -->
+    <section class="home-section section" id="tech-showcase">
+      <div class="container">
+        <div class="section-label">Teknoloji Yığınımız</div>
+        <h2 class="reveal">Teknolojiler & <span class="gradient-text">Araçlar</span></h2>
+        <p class="reveal" style="margin-top: var(--space-md);">İnşa ettiğimiz her projeye güç veren en ileri araçlar.
+        </p>
+
+        <div class="tech-showcase-grid stagger-children">
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">⚛️</span>
+            <span class="tech-pill-name">React</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">🟢</span>
+            <span class="tech-pill-name">Node.js</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">🐍</span>
+            <span class="tech-pill-name">Python</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">🤖</span>
+            <span class="tech-pill-name">TensorFlow</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">🔥</span>
+            <span class="tech-pill-name">PyTorch</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">☁️</span>
+            <span class="tech-pill-name">AWS</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">🐳</span>
+            <span class="tech-pill-name">Docker</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">☸️</span>
+            <span class="tech-pill-name">Kubernetes</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">🦾</span>
+            <span class="tech-pill-name">LangChain</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">📊</span>
+            <span class="tech-pill-name">PostgreSQL</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">⚡</span>
+            <span class="tech-pill-name">Next.js</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">🎨</span>
+            <span class="tech-pill-name">Figma</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">🔗</span>
+            <span class="tech-pill-name">GraphQL</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">📱</span>
+            <span class="tech-pill-name">Flutter</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">🧠</span>
+            <span class="tech-pill-name">OpenAI</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">🔄</span>
+            <span class="tech-pill-name">n8n</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">🛡️</span>
+            <span class="tech-pill-name">Terraform</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">📦</span>
+            <span class="tech-pill-name">MongoDB</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">🔮</span>
+            <span class="tech-pill-name">Three.js</span>
+          </div>
+          <div class="tech-pill reveal">
+            <span class="tech-pill-emoji">🚀</span>
+            <span class="tech-pill-name">Vercel</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CTA SECTION ==================== -->
+    <section class="cta-section section">
+      <div class="container">
+        <div class="section-label" style="justify-content: center;">Hemen Başlayın</div>
+        <h2 class="reveal">Birlikte <span class="gradient-text">Olağanüstü</span><br>Bir Şey İnşa Edelim</h2>
+        <p class="reveal">Bize projenizden bahsedin. 24 saat içinde size geri döneceğiz.</p>
+        <div class="reveal">
+          <a href="html-files/contact.html" class="btn btn-primary magnetic">
+            İletişime Geçin <span class="btn-icon">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-brand-name">{CW<span>.</span>}</div>
+            <p class="footer-description">Düşünen, öğrenen ve ölçeklenen yapay zeka ajanları, makine öğrenimi
+              boru hatları ve akıllı yazılımlar inşa eden yapay zeka destekli bir yazılım stüdyosu.</p>
+          </div>
+          <div>
+            <h4 class="footer-heading">Navigasyon</h4>
+            <ul class="footer-link-list">
+              <li><a href="html-files/services.html" class="footer-link">Hizmetler</a></li>
+              <li><a href="html-files/projects.html" class="footer-link">Projeler</a></li>
+              <li><a href="html-files/about.html" class="footer-link">Hakkımızda</a></li>
+              <li><a href="html-files/tech.html" class="footer-link">Teknolojiler</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-heading">Kaynaklar</h4>
+            <ul class="footer-link-list">
+              <li><a href="html-files/process.html" class="footer-link">Süreçlerimiz</a></li>
+              <li><a href="html-files/contact.html" class="footer-link">İletişim</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-heading">Bağlantılar</h4>
+            <ul class="footer-link-list">
+              <li><a href="#" class="footer-link">GitHub</a></li>
+              <li><a href="#" class="footer-link">LinkedIn</a></li>
+              <li><a href="#" class="footer-link">Twitter</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 CodeWaft. Tüm hakları saklıdır.</span>
+          <div class="footer-status">
+            <span class="status-dot"></span>
+            Tüm Sistemler Çalışır Durumda
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /page-wrapper -->
+
+  <!-- Vendor -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- App -->
+  <script type="module" src="js-files/main.js"></script>
+
+  <!-- JARVIS HUD Hero Animation -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('jarvis-hud-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w, h, cx, cy, startTime;
+      const PI2 = Math.PI * 2;
+      const DEG = Math.PI / 180;
+
+      // JARVIS Color palette — Iron Man blue/cyan HUD
+      const CYAN = { r: 6, g: 182, b: 212 };
+      const INDIGO = { r: 99, g: 102, b: 241 };
+      const VIOLET = { r: 139, g: 92, b: 246 };
+      const WHITE = { r: 200, g: 220, b: 255 };
+      const BLUE = { r: 56, g: 189, b: 248 };
+
+      function rgba(c, a) { return `rgba(${c.r},${c.g},${c.b},${a})`; }
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      // Mouse
+      const mouse = { x: -999, y: -999, active: false };
+      canvas.addEventListener('mousemove', e => {
+        const r = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - r.left;
+        mouse.y = e.clientY - r.top;
+        mouse.active = true;
+      });
+      canvas.addEventListener('mouseleave', () => { mouse.active = false; });
+
+      // HUD state
+      let rings, arcSets, gauges, particles, gridDots, waveData, statusBars, targetReticle;
+
+      function resize() {
+        const dpr = window.devicePixelRatio || 1;
+        w = canvas.clientWidth;
+        h = canvas.clientHeight;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        cx = w / 2;
+        cy = h / 2;
+        init();
+      }
+
+      function init() {
+        const minD = Math.min(w, h);
+
+        // === ARC REACTOR RINGS (center) ===
+        rings = [];
+        const ringData = [
+          { r: 0.06, w: 3.0, spd: 0.8, dash: [2, 6], col: CYAN },
+          { r: 0.10, w: 2.0, spd: -0.5, dash: [8, 4], col: INDIGO },
+          { r: 0.14, w: 1.5, spd: 0.35, dash: [3, 8], col: BLUE },
+          { r: 0.19, w: 2.5, spd: -0.25, dash: [12, 6], col: CYAN },
+          { r: 0.24, w: 1.0, spd: 0.6, dash: [1, 12], col: INDIGO },
+          { r: 0.30, w: 1.5, spd: -0.4, dash: [6, 3], col: VIOLET },
+          { r: 0.36, w: 0.8, spd: 0.3, dash: [2, 10], col: BLUE },
+          { r: 0.42, w: 2.0, spd: -0.2, dash: [15, 8], col: CYAN },
+        ];
+        ringData.forEach((d, i) => {
+          rings.push({
+            radius: minD * d.r,
+            width: d.w,
+            speed: d.spd,
+            dash: d.dash,
+            color: d.col,
+            rotation: Math.random() * PI2,
+            opacity: 0.12 + (ringData.length - i) * 0.015
+          });
+        });
+
+        // === ARC SEGMENTS with tick marks ===
+        arcSets = [];
+        for (let i = 0; i < 14; i++) {
+          const layer = Math.floor(i / 3);
+          arcSets.push({
+            radius: minD * (0.08 + layer * 0.08 + Math.random() * 0.25),
+            start: Math.random() * PI2,
+            sweep: (0.2 + Math.random() * 0.6),
+            width: 1 + Math.random() * 2.5,
+            speed: (Math.random() > 0.5 ? 1 : -1) * (0.08 + Math.random() * 0.25),
+            color: [CYAN, INDIGO, BLUE, VIOLET][i % 4],
+            opacity: 0.08 + Math.random() * 0.12,
+            ticks: 3 + Math.floor(Math.random() * 8)
+          });
+        }
+
+        // === GAUGE DIALS (Iron Man style readout dials) ===
+        gauges = [
+          { angle: -0.4, dist: 0.17, label: 'CPU', value: 0, target: 87, size: minD * 0.04 },
+          { angle: 0.5, dist: 0.20, label: 'MEM', value: 0, target: 64, size: minD * 0.035 },
+          { angle: 2.2, dist: 0.18, label: 'NET', value: 0, target: 95, size: minD * 0.038 },
+          { angle: 3.5, dist: 0.22, label: 'GPU', value: 0, target: 72, size: minD * 0.036 },
+          { angle: -1.5, dist: 0.25, label: 'PWR', value: 0, target: 100, size: minD * 0.04 },
+          { angle: 1.3, dist: 0.28, label: 'AI', value: 0, target: 91, size: minD * 0.035 },
+        ];
+
+        // === TARGETING RETICLE (follows mouse) ===
+        targetReticle = { x: cx, y: cy, targetX: cx, targetY: cy, size: 35, pulse: 0, locked: false };
+
+        // === PARTICLES (orbital) ===
+        particles = [];
+        for (let i = 0; i < 80; i++) {
+          const angle = Math.random() * PI2;
+          const dist = minD * (0.05 + Math.random() * 0.45);
+          particles.push({
+            angle, dist,
+            x: cx + Math.cos(angle) * dist,
+            y: cy + Math.sin(angle) * dist,
+            vx: (Math.random() - 0.5) * 0.4,
+            vy: (Math.random() - 0.5) * 0.4,
+            r: 0.5 + Math.random() * 2,
+            color: [CYAN, INDIGO, BLUE, VIOLET, WHITE][i % 5],
+            opacity: 0.08 + Math.random() * 0.2,
+            phase: Math.random() * PI2,
+            orbital: Math.random() > 0.4,
+            orbitalSpeed: (Math.random() - 0.5) * 0.003
+          });
+        }
+
+        // === PERSPECTIVE GRID (blueprint style) ===
+        gridDots = [];
+        const spacing = 40;
+        for (let gx = 0; gx < w; gx += spacing) {
+          for (let gy = 0; gy < h; gy += spacing) {
+            const dx = gx - cx, dy = gy - cy;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            gridDots.push({
+              x: gx, y: gy, size: 1,
+              baseOpacity: Math.max(0, 0.08 - d / (minD * 0.8) * 0.06),
+              phase: Math.random() * PI2
+            });
+          }
+        }
+
+        // === WAVEFORM DATA (voice visualizer) ===
+        waveData = new Array(64).fill(0);
+
+        // === STATUS BARS (edge HUD) ===
+        statusBars = [
+          { x: 50, y: h * 0.3, w: 4, h: h * 0.4, value: 0, target: 0.78, label: 'CORE', color: CYAN },
+          { x: w - 54, y: h * 0.3, w: 4, h: h * 0.4, value: 0, target: 0.92, label: 'SHLD', color: INDIGO },
+        ];
+      }
+
+      // ==================== DRAW ====================
+      function draw() {
+        const t = (performance.now() - startTime) * 0.001;
+        const intro = Math.min(t / 2.5, 1);
+        const ease = 1 - Math.pow(1 - intro, 4);
+
+        ctx.clearRect(0, 0, w, h);
+
+        // === RADIAL GRADIENT BACKGROUND ===
+        const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w, h) * 0.6);
+        bg.addColorStop(0, rgba(CYAN, 0.03 * ease));
+        bg.addColorStop(0.3, rgba(INDIGO, 0.02 * ease));
+        bg.addColorStop(1, 'transparent');
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, w, h);
+
+        // === GRID ===
+        gridDots.forEach(dot => {
+          const dx = mouse.active ? mouse.x - dot.x : cx - dot.x;
+          const dy = mouse.active ? mouse.y - dot.y : cy - dot.y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          const mouseGlow = mouse.active && d < 150 ? (1 - d / 150) * 0.2 : 0;
+          const pulse = Math.sin(t * 0.5 + dot.phase) * 0.015;
+          const alpha = (dot.baseOpacity + pulse + mouseGlow) * ease;
+          if (alpha < 0.005) return;
+          ctx.fillStyle = rgba(INDIGO, alpha);
+          ctx.fillRect(dot.x - 0.5, dot.y - 0.5, 1, 1);
+          // Cross instead of dot for some
+          if (mouseGlow > 0.05) {
+            ctx.strokeStyle = rgba(CYAN, mouseGlow * 0.6 * ease);
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(dot.x - 3, dot.y); ctx.lineTo(dot.x + 3, dot.y);
+            ctx.moveTo(dot.x, dot.y - 3); ctx.lineTo(dot.x, dot.y + 3);
+            ctx.stroke();
+          }
+        });
+
+        // === SCAN LINES (radar sweep) ===
+        for (let s = 0; s < 3; s++) {
+          const sAngle = t * (0.25 + s * 0.12) + s * 2.1;
+          const sLen = Math.min(w, h) * (0.3 + s * 0.08);
+          ctx.save();
+          ctx.translate(cx, cy);
+          ctx.rotate(sAngle);
+          const sg = ctx.createLinearGradient(0, 0, sLen, 0);
+          sg.addColorStop(0, rgba([CYAN, BLUE, INDIGO][s], 0.08 * ease));
+          sg.addColorStop(0.6, rgba([CYAN, BLUE, INDIGO][s], 0.03 * ease));
+          sg.addColorStop(1, 'transparent');
+          ctx.fillStyle = sg;
+          ctx.fillRect(0, -40 - s * 10, sLen, 80 + s * 20);
+          ctx.restore();
+        }
+
+        // === ARC REACTOR CORE (center glow) ===
+        const coreGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.min(w, h) * 0.08 * ease);
+        coreGlow.addColorStop(0, rgba(CYAN, (0.2 + Math.sin(t * 3) * 0.05) * ease));
+        coreGlow.addColorStop(0.4, rgba(INDIGO, 0.08 * ease));
+        coreGlow.addColorStop(1, 'transparent');
+        ctx.fillStyle = coreGlow;
+        ctx.beginPath();
+        ctx.arc(cx, cy, Math.min(w, h) * 0.08 * ease, 0, PI2);
+        ctx.fill();
+
+        // === CONCENTRIC RINGS ===
+        rings.forEach(ring => {
+          ring.rotation += ring.speed * 0.016;
+          const r = ring.radius * ease;
+          ctx.save();
+          ctx.translate(cx, cy);
+          ctx.rotate(ring.rotation);
+          ctx.setLineDash(ring.dash);
+          ctx.strokeStyle = rgba(ring.color, ring.opacity * ease);
+          ctx.lineWidth = ring.width;
+          ctx.beginPath();
+          ctx.arc(0, 0, r, 0, PI2);
+          ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.restore();
+        });
+
+        // === ARC SEGMENTS + TICK MARKS ===
+        arcSets.forEach(arc => {
+          arc.start += arc.speed * 0.016;
+          const r = arc.radius * ease;
+          // Main arc
+          ctx.beginPath();
+          ctx.arc(cx, cy, r, arc.start, arc.start + arc.sweep);
+          ctx.strokeStyle = rgba(arc.color, arc.opacity * ease);
+          ctx.lineWidth = arc.width;
+          ctx.stroke();
+          // End caps (small perpendicular lines)
+          [arc.start, arc.start + arc.sweep].forEach(a => {
+            const nx = Math.cos(a), ny = Math.sin(a);
+            ctx.beginPath();
+            ctx.moveTo(cx + nx * r, cy + ny * r);
+            ctx.lineTo(cx + nx * (r + 8), cy + ny * (r + 8));
+            ctx.strokeStyle = rgba(arc.color, arc.opacity * 1.5 * ease);
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+          });
+          // Tick marks along the arc
+          for (let ti = 0; ti < arc.ticks; ti++) {
+            const ta = arc.start + (arc.sweep / (arc.ticks + 1)) * (ti + 1);
+            const tnx = Math.cos(ta), tny = Math.sin(ta);
+            ctx.beginPath();
+            ctx.moveTo(cx + tnx * (r - 3), cy + tny * (r - 3));
+            ctx.lineTo(cx + tnx * (r + 3), cy + tny * (r + 3));
+            ctx.strokeStyle = rgba(arc.color, arc.opacity * 0.7 * ease);
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        });
+
+        // === CENTER CROSSHAIR (Iron Man style) ===
+        const cs = 20 * ease;
+        const cAlpha = 0.3 * ease;
+        ctx.strokeStyle = rgba(CYAN, cAlpha);
+        ctx.lineWidth = 1.5;
+        // Horizontal
+        ctx.beginPath(); ctx.moveTo(cx - cs, cy); ctx.lineTo(cx - 6, cy); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(cx + 6, cy); ctx.lineTo(cx + cs, cy); ctx.stroke();
+        // Vertical
+        ctx.beginPath(); ctx.moveTo(cx, cy - cs); ctx.lineTo(cx, cy - 6); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(cx, cy + 6); ctx.lineTo(cx, cy + cs); ctx.stroke();
+        // Small diamond
+        const dd = 4 * ease;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - dd); ctx.lineTo(cx + dd, cy); ctx.lineTo(cx, cy + dd); ctx.lineTo(cx - dd, cy);
+        ctx.closePath();
+        ctx.strokeStyle = rgba(CYAN, 0.4 * ease);
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        // Center pulsing dot
+        const dotR = 2 + Math.sin(t * 4) * 0.8;
+        ctx.beginPath();
+        ctx.arc(cx, cy, dotR * ease, 0, PI2);
+        ctx.fillStyle = rgba(CYAN, (0.5 + Math.sin(t * 4) * 0.2) * ease);
+        ctx.fill();
+
+        // === GAUGE DIALS ===
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        gauges.forEach((g, gi) => {
+          const delay = 0.8 + gi * 0.2;
+          const gEase = Math.max(0, Math.min(1, (t - delay) / 1.5));
+          if (gEase <= 0) return;
+          g.value += (g.target - g.value) * 0.02;
+
+          const gx = cx + Math.cos(g.angle) * Math.min(w, h) * g.dist;
+          const gy = cy + Math.sin(g.angle) * Math.min(w, h) * g.dist;
+
+          // Gauge arc background
+          ctx.beginPath();
+          ctx.arc(gx, gy, g.size, -Math.PI * 0.75, Math.PI * 0.75);
+          ctx.strokeStyle = rgba(INDIGO, 0.08 * gEase);
+          ctx.lineWidth = 3;
+          ctx.stroke();
+
+          // Gauge arc fill
+          const fillAngle = -Math.PI * 0.75 + (Math.PI * 1.5) * (g.value / 100);
+          ctx.beginPath();
+          ctx.arc(gx, gy, g.size, -Math.PI * 0.75, fillAngle);
+          ctx.strokeStyle = rgba(CYAN, 0.35 * gEase);
+          ctx.lineWidth = 3;
+          ctx.stroke();
+
+          // Gauge value
+          ctx.font = `600 ${Math.max(9, g.size * 0.55)}px "JetBrains Mono", monospace`;
+          ctx.fillStyle = rgba(WHITE, 0.4 * gEase);
+          ctx.fillText(Math.round(g.value) + '%', gx, gy - 1);
+
+          // Gauge label
+          ctx.font = `500 ${Math.max(7, g.size * 0.35)}px "JetBrains Mono", monospace`;
+          ctx.fillStyle = rgba(CYAN, 0.25 * gEase);
+          ctx.fillText(g.label, gx, gy + g.size * 0.5 + 6);
+        });
+
+        // === TEXT READOUTS (floating labels) ===
+        const readouts = [
+          { text: 'SYSTEM ONLINE', angle: -1.8, dist: 0.32 },
+          { text: 'AI CORE v4.2', angle: -0.8, dist: 0.36 },
+          { text: 'AGENTS: 4 READY', angle: 0.4, dist: 0.34 },
+          { text: 'UPLINK: ACTIVE', angle: 1.2, dist: 0.38 },
+          { text: 'CODEWAFT//HUD', angle: 2.4, dist: 0.33 },
+          { text: 'ML PIPELINE OK', angle: 3.4, dist: 0.36 },
+          { text: 'SEC: NOMINAL', angle: -2.6, dist: 0.35 },
+          { text: 'LATENCY: 12ms', angle: 0.0, dist: 0.40 },
+        ];
+        readouts.forEach((rd, i) => {
+          const delay = 1.2 + i * 0.25;
+          const ta = Math.max(0, Math.min(1, (t - delay) / 0.6));
+          if (ta <= 0) return;
+          const rx = cx + Math.cos(rd.angle) * Math.min(w, h) * rd.dist;
+          const ry = cy + Math.sin(rd.angle) * Math.min(w, h) * rd.dist;
+          const flash = Math.sin(t * 1.5 + i * 0.7) > 0.85 ? 0.12 : 0;
+          ctx.font = '500 9px "JetBrains Mono", monospace';
+          ctx.textAlign = 'center';
+          ctx.fillStyle = rgba(CYAN, (0.18 + flash) * ta);
+          ctx.fillText(rd.text, rx, ry);
+          // Connecting line to nearest ring
+          ctx.beginPath();
+          ctx.moveTo(rx, ry + 6);
+          const lineEnd = Math.min(w, h) * 0.28;
+          const ex = cx + Math.cos(rd.angle) * lineEnd;
+          const ey = cy + Math.sin(rd.angle) * lineEnd;
+          ctx.lineTo(ex, ey);
+          ctx.strokeStyle = rgba(INDIGO, 0.04 * ta);
+          ctx.lineWidth = 0.5;
+          ctx.setLineDash([2, 4]);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        });
+
+        // === WAVEFORM (simulated voice/signal) ===
+        const waveY = h * 0.88;
+        const waveW = Math.min(300, w * 0.25);
+        const waveX = cx - waveW / 2;
+        for (let i = 0; i < waveData.length; i++) {
+          waveData[i] = lerp(waveData[i], (Math.sin(t * 4 + i * 0.5) * 0.5 + Math.sin(t * 7 + i * 0.3) * 0.3 + Math.random() * 0.2) * 15, 0.1);
+        }
+        ctx.beginPath();
+        for (let i = 0; i < waveData.length; i++) {
+          const x = waveX + (i / waveData.length) * waveW;
+          const y = waveY + waveData[i] * ease;
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = rgba(CYAN, 0.15 * ease);
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        // Mirror
+        ctx.beginPath();
+        for (let i = 0; i < waveData.length; i++) {
+          const x = waveX + (i / waveData.length) * waveW;
+          const y = waveY - waveData[i] * ease;
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = rgba(CYAN, 0.08 * ease);
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        // Waveform label
+        ctx.font = '500 8px "JetBrains Mono", monospace';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = rgba(CYAN, 0.12 * ease);
+        ctx.fillText('SIGNAL ANALYSIS', cx, waveY + 25);
+
+        // === STATUS BARS (left/right edge) ===
+        statusBars.forEach(sb => {
+          sb.value += (sb.target - sb.value) * 0.015;
+          const fillH = sb.h * sb.value * ease;
+          // Background
+          ctx.fillStyle = rgba(INDIGO, 0.04 * ease);
+          ctx.fillRect(sb.x, sb.y, sb.w, sb.h);
+          // Fill (from bottom)
+          ctx.fillStyle = rgba(sb.color, 0.2 * ease);
+          ctx.fillRect(sb.x, sb.y + sb.h - fillH, sb.w, fillH);
+          // Glow at top of fill
+          const glowG = ctx.createLinearGradient(sb.x, sb.y + sb.h - fillH - 10, sb.x, sb.y + sb.h - fillH + 5);
+          glowG.addColorStop(0, 'transparent');
+          glowG.addColorStop(1, rgba(sb.color, 0.3 * ease));
+          ctx.fillStyle = glowG;
+          ctx.fillRect(sb.x - 2, sb.y + sb.h - fillH - 10, sb.w + 4, 15);
+          // Label
+          ctx.save();
+          ctx.translate(sb.x + sb.w / 2, sb.y - 10);
+          ctx.font = '500 7px "JetBrains Mono", monospace';
+          ctx.textAlign = 'center';
+          ctx.fillStyle = rgba(sb.color, 0.2 * ease);
+          ctx.fillText(sb.label, 0, 0);
+          ctx.restore();
+          // Percentage
+          ctx.font = '600 8px "JetBrains Mono", monospace';
+          ctx.textAlign = 'center';
+          ctx.fillStyle = rgba(sb.color, 0.25 * ease);
+          ctx.fillText(Math.round(sb.value * 100) + '%', sb.x + sb.w / 2, sb.y + sb.h + 14);
+        });
+
+        // === PARTICLES ===
+        particles.forEach(p => {
+          if (p.orbital) {
+            p.angle += p.orbitalSpeed;
+            p.x = cx + Math.cos(p.angle) * p.dist;
+            p.y = cy + Math.sin(p.angle) * p.dist;
+          } else {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0) p.x = w;
+            if (p.x > w) p.x = 0;
+            if (p.y < 0) p.y = h;
+            if (p.y > h) p.y = 0;
+          }
+          // Mouse repulsion
+          if (mouse.active) {
+            const dx = p.x - mouse.x, dy = p.y - mouse.y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < 120) {
+              p.x += dx * 0.008;
+              p.y += dy * 0.008;
+            }
+          }
+          const pulse = Math.sin(t * 2 + p.phase) * 0.5 + 0.5;
+          const alpha = p.opacity * (0.4 + pulse * 0.6) * ease;
+          // Glow
+          const gl = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
+          gl.addColorStop(0, rgba(p.color, alpha * 0.4));
+          gl.addColorStop(1, 'transparent');
+          ctx.fillStyle = gl;
+          ctx.fillRect(p.x - p.r * 4, p.y - p.r * 4, p.r * 8, p.r * 8);
+          // Dot
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r * (0.5 + pulse * 0.5), 0, PI2);
+          ctx.fillStyle = rgba(p.color, alpha);
+          ctx.fill();
+        });
+
+        // === PARTICLE CONNECTIONS ===
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < 90) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = rgba(CYAN, 0.03 * (1 - d / 90) * ease);
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+
+        // === TARGETING RETICLE (mouse follow) ===
+        if (mouse.active) {
+          targetReticle.targetX = mouse.x;
+          targetReticle.targetY = mouse.y;
+        } else {
+          targetReticle.targetX = cx + Math.sin(t * 0.3) * 60;
+          targetReticle.targetY = cy + Math.cos(t * 0.4) * 40;
+        }
+        targetReticle.x += (targetReticle.targetX - targetReticle.x) * 0.06;
+        targetReticle.y += (targetReticle.targetY - targetReticle.y) * 0.06;
+        targetReticle.pulse = Math.sin(t * 3) * 0.15 + 0.85;
+        const tx = targetReticle.x, ty = targetReticle.y;
+        const ts = targetReticle.size * targetReticle.pulse * ease;
+        const tAlpha = 0.2 * ease;
+        // Outer box corners
+        ctx.strokeStyle = rgba(CYAN, tAlpha);
+        ctx.lineWidth = 1.5;
+        const th = ts * 0.3;
+        // TL
+        ctx.beginPath(); ctx.moveTo(tx - ts, ty - ts + th); ctx.lineTo(tx - ts, ty - ts); ctx.lineTo(tx - ts + th, ty - ts); ctx.stroke();
+        // TR
+        ctx.beginPath(); ctx.moveTo(tx + ts - th, ty - ts); ctx.lineTo(tx + ts, ty - ts); ctx.lineTo(tx + ts, ty - ts + th); ctx.stroke();
+        // BL
+        ctx.beginPath(); ctx.moveTo(tx - ts, ty + ts - th); ctx.lineTo(tx - ts, ty + ts); ctx.lineTo(tx - ts + th, ty + ts); ctx.stroke();
+        // BR
+        ctx.beginPath(); ctx.moveTo(tx + ts - th, ty + ts); ctx.lineTo(tx + ts, ty + ts); ctx.lineTo(tx + ts, ty + ts - th); ctx.stroke();
+        // Inner cross
+        ctx.strokeStyle = rgba(CYAN, tAlpha * 0.6);
+        ctx.lineWidth = 0.8;
+        ctx.beginPath(); ctx.moveTo(tx - 8, ty); ctx.lineTo(tx + 8, ty); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(tx, ty - 8); ctx.lineTo(tx, ty + 8); ctx.stroke();
+        // Coordinates readout near reticle
+        ctx.font = '500 7px "JetBrains Mono", monospace';
+        ctx.textAlign = 'left';
+        ctx.fillStyle = rgba(CYAN, 0.15 * ease);
+        ctx.fillText(`X:${Math.round(tx)} Y:${Math.round(ty)}`, tx + ts + 6, ty - ts + 5);
+
+        // === CORNER HUD BRACKETS ===
+        const bSize = 40 * ease;
+        const bIn = 30;
+        ctx.strokeStyle = rgba(CYAN, 0.1 * ease);
+        ctx.lineWidth = 1.5;
+        // TL
+        ctx.beginPath(); ctx.moveTo(bIn, bIn + bSize); ctx.lineTo(bIn, bIn); ctx.lineTo(bIn + bSize, bIn); ctx.stroke();
+        // TR
+        ctx.beginPath(); ctx.moveTo(w - bIn - bSize, bIn); ctx.lineTo(w - bIn, bIn); ctx.lineTo(w - bIn, bIn + bSize); ctx.stroke();
+        // BL
+        ctx.beginPath(); ctx.moveTo(bIn, h - bIn - bSize); ctx.lineTo(bIn, h - bIn); ctx.lineTo(bIn + bSize, h - bIn); ctx.stroke();
+        // BR
+        ctx.beginPath(); ctx.moveTo(w - bIn - bSize, h - bIn); ctx.lineTo(w - bIn, h - bIn); ctx.lineTo(w - bIn, h - bIn - bSize); ctx.stroke();
+
+        // === TOP/BOTTOM BAR READOUTS ===
+        ctx.font = '500 8px "JetBrains Mono", monospace';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = rgba(CYAN, 0.1 * ease);
+        ctx.fillText('CODEWAFT JARVIS HUD // REAL-TIME INTERFACE', cx, bIn + 12);
+        ctx.fillText('STATUS: ALL SYSTEMS NOMINAL', cx, h - bIn - 8);
+        // Top corners data
+        ctx.textAlign = 'left';
+        ctx.fillText(`FPS: ${Math.round(1 / Math.max(0.016, performance.now() * 0.001 - t + (performance.now() - startTime) * 0.001))}`, bIn + 8, bIn + 25);
+        ctx.textAlign = 'right';
+        const now = new Date();
+        ctx.fillText(`${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`, w - bIn - 8, bIn + 25);
+
+        // === HEXAGONAL DECORATIVE ELEMENTS (scattered) ===
+        for (let hi = 0; hi < 6; hi++) {
+          const hAngle = hi * (PI2 / 6) + t * 0.05;
+          const hDist = Math.min(w, h) * 0.44;
+          const hx = cx + Math.cos(hAngle) * hDist;
+          const hy = cy + Math.sin(hAngle) * hDist;
+          const hSize = 12 * ease;
+          ctx.beginPath();
+          for (let vi = 0; vi < 6; vi++) {
+            const va = PI2 / 6 * vi - Math.PI / 6;
+            const vx = hx + Math.cos(va) * hSize;
+            const vy = hy + Math.sin(va) * hSize;
+            if (vi === 0) ctx.moveTo(vx, vy); else ctx.lineTo(vx, vy);
+          }
+          ctx.closePath();
+          ctx.strokeStyle = rgba(INDIGO, (0.06 + Math.sin(t + hi) * 0.02) * ease);
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      startTime = performance.now();
+      window.addEventListener('resize', () => { resize(); });
+      resize();
+      draw();
+    });
+  </script>
+
+  <!-- 3D Showcase: Interactive Draggable Objects -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof THREE === 'undefined') return;
+
+      const showcaseItems = document.querySelectorAll('.showcase-item');
+      showcaseItems.forEach(item => {
+        const canvas = item.querySelector('.showcase-canvas');
+        const shapeType = item.dataset.shape;
+        if (!canvas) return;
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+        camera.position.z = 3.5;
+
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setClearColor(0x000000, 0);
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+
+        let geometry;
+        if (shapeType === 'torusKnot') {
+          geometry = new THREE.TorusKnotGeometry(0.8, 0.25, 128, 32, 2, 3);
+        } else if (shapeType === 'sphere') {
+          geometry = new THREE.IcosahedronGeometry(1.1, 2);
+        } else {
+          geometry = new THREE.OctahedronGeometry(1.2, 0);
+        }
+
+        const mat = new THREE.MeshPhongMaterial({
+          color: shapeType === 'torusKnot' ? 0x6366F1 : shapeType === 'sphere' ? 0x8B5CF6 : 0x06B6D4,
+          emissive: shapeType === 'torusKnot' ? 0x312E81 : shapeType === 'sphere' ? 0x2D1B69 : 0x023640,
+          emissiveIntensity: 0.3,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.6,
+          shininess: 200
+        });
+        const mesh = new THREE.Mesh(geometry, mat);
+        scene.add(mesh);
+
+        // Add a solid inner version
+        const innerMat = new THREE.MeshPhongMaterial({
+          color: mat.color,
+          emissive: mat.emissive,
+          emissiveIntensity: 0.5,
+          transparent: true,
+          opacity: 0.08,
+          shininess: 150
+        });
+        const innerMesh = new THREE.Mesh(geometry.clone(), innerMat);
+        innerMesh.scale.setScalar(0.7);
+        scene.add(innerMesh);
+
+        // Lights
+        scene.add(new THREE.AmbientLight(0x333333, 0.8));
+        const light = new THREE.PointLight(mat.color.getHex(), 1.5, 10);
+        light.position.set(2, 2, 3);
+        scene.add(light);
+        const backLight = new THREE.PointLight(0x8B5CF6, 0.5, 8);
+        backLight.position.set(-2, -1, -2);
+        scene.add(backLight);
+
+        // Drag rotation
+        let isDragging = false;
+        let prevMouse = { x: 0, y: 0 };
+        let rotVel = { x: 0, y: 0 };
+
+        canvas.addEventListener('pointerdown', (e) => {
+          isDragging = true;
+          prevMouse = { x: e.clientX, y: e.clientY };
+          canvas.setPointerCapture(e.pointerId);
+        });
+        canvas.addEventListener('pointermove', (e) => {
+          if (!isDragging) return;
+          const dx = e.clientX - prevMouse.x;
+          const dy = e.clientY - prevMouse.y;
+          rotVel.x += dy * 0.005;
+          rotVel.y += dx * 0.005;
+          prevMouse = { x: e.clientX, y: e.clientY };
+        });
+        canvas.addEventListener('pointerup', () => { isDragging = false; });
+
+        // Resize
+        const resizeObserver = new ResizeObserver(() => {
+          const w = canvas.clientWidth;
+          const h = canvas.clientHeight;
+          if (w === 0 || h === 0) return;
+          renderer.setSize(w, h);
+          camera.aspect = w / h;
+          camera.updateProjectionMatrix();
+        });
+        resizeObserver.observe(canvas);
+
+        // Initial size
+        const w = canvas.clientWidth || 300;
+        const h = canvas.clientHeight || 300;
+        renderer.setSize(w, h);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+
+        const clock = new THREE.Clock();
+        function animate() {
+          requestAnimationFrame(animate);
+          const t = clock.getElapsedTime();
+
+          // Auto rotation + drag
+          mesh.rotation.x += rotVel.x + 0.003;
+          mesh.rotation.y += rotVel.y + 0.005;
+          innerMesh.rotation.x = mesh.rotation.x * -0.8;
+          innerMesh.rotation.y = mesh.rotation.y * -0.6;
+
+          // Friction on drag velocity
+          rotVel.x *= 0.96;
+          rotVel.y *= 0.96;
+
+          // Subtle float
+          mesh.position.y = Math.sin(t * 0.8) * 0.05;
+
+          renderer.render(scene, camera);
+        }
+        animate();
+      });
+    });
+  </script>
+
+  <!-- 3D Globe -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const globeCanvas = document.getElementById('globe-canvas');
+      const globeWrap = document.getElementById('globe-container');
+      if (!globeCanvas || !globeWrap || typeof THREE === 'undefined') return;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+      camera.position.z = 4;
+
+      const renderer = new THREE.WebGLRenderer({ canvas: globeCanvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setClearColor(0x000000, 0);
+
+      // Wireframe globe
+      const globeGeo = new THREE.SphereGeometry(1.3, 36, 36);
+      const globeMat = new THREE.MeshBasicMaterial({
+        color: 0x6366F1,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.1
+      });
+      const globe = new THREE.Mesh(globeGeo, globeMat);
+      scene.add(globe);
+
+      // Equator and meridian lines
+      const lineGeo1 = new THREE.TorusGeometry(1.32, 0.005, 8, 100);
+      const lineMat = new THREE.MeshBasicMaterial({ color: 0x6366F1, transparent: true, opacity: 0.25 });
+      const equator = new THREE.Mesh(lineGeo1, lineMat);
+      scene.add(equator);
+
+      const meridian = new THREE.Mesh(lineGeo1.clone(), lineMat.clone());
+      meridian.rotation.x = Math.PI / 2;
+      scene.add(meridian);
+
+      // Connection points (simulating client locations)
+      const pointData = [
+        { lat: 40.7, lon: -74 },   // NYC
+        { lat: 51.5, lon: -0.1 },  // London
+        { lat: 35.7, lon: 139.7 }, // Tokyo
+        { lat: -33.9, lon: 151.2 },// Sydney
+        { lat: 48.9, lon: 2.35 },  // Paris
+        { lat: 37.4, lon: -122 },  // SF
+        { lat: 1.3, lon: 103.8 },  // Singapore
+        { lat: 52.5, lon: 13.4 },  // Berlin
+      ];
+
+      const dotGeo = new THREE.SphereGeometry(0.03, 8, 8);
+      const dotMat = new THREE.MeshBasicMaterial({ color: 0x818CF8 });
+      const pulseGeo = new THREE.SphereGeometry(0.05, 8, 8);
+      const pulseMat = new THREE.MeshBasicMaterial({ color: 0x6366F1, transparent: true, opacity: 0.3 });
+
+      const dots = [];
+      pointData.forEach(p => {
+        const phi = (90 - p.lat) * (Math.PI / 180);
+        const theta = (p.lon + 180) * (Math.PI / 180);
+        const x = -1.33 * Math.sin(phi) * Math.cos(theta);
+        const y = 1.33 * Math.cos(phi);
+        const z = 1.33 * Math.sin(phi) * Math.sin(theta);
+
+        const dot = new THREE.Mesh(dotGeo, dotMat);
+        dot.position.set(x, y, z);
+        scene.add(dot);
+
+        const pulse = new THREE.Mesh(pulseGeo, pulseMat.clone());
+        pulse.position.set(x, y, z);
+        scene.add(pulse);
+        dots.push(pulse);
+      });
+
+      // Lights
+      scene.add(new THREE.AmbientLight(0x222222, 0.5));
+      const gLight = new THREE.PointLight(0x6366F1, 0.6, 10);
+      gLight.position.set(3, 2, 3);
+      scene.add(gLight);
+
+      // Resize
+      const resizeGlobe = () => {
+        const s = Math.min(globeWrap.clientWidth, globeWrap.clientHeight) || 400;
+        renderer.setSize(s, s);
+        camera.aspect = 1;
+        camera.updateProjectionMatrix();
+      };
+      resizeGlobe();
+      window.addEventListener('resize', resizeGlobe);
+
+      const clock = new THREE.Clock();
+      function animate() {
+        requestAnimationFrame(animate);
+        const t = clock.getElapsedTime();
+
+        globe.rotation.y = t * 0.15;
+        equator.rotation.y = t * 0.15;
+        meridian.rotation.y = t * 0.15;
+
+        dots.forEach((d, i) => {
+          const scale = 1 + Math.sin(t * 2 + i) * 0.5;
+          d.scale.setScalar(scale);
+          d.material.opacity = 0.3 - Math.sin(t * 2 + i) * 0.15;
+          d.parent.children.forEach(c => {
+            if (c.geometry === dotGeo) return;
+          });
+        });
+
+        // Rotate dots with globe
+        scene.children.forEach(c => {
+          if (c.geometry === dotGeo || c.geometry === pulseGeo) {
+            // They stay at world position — globe rotates visually
+          }
+        });
+
+        renderer.render(scene, camera);
+      }
+      animate();
+    });
+  </script>
+
+  <!-- Inline Reveal Observer (works without ES modules) -->
+  <script>
+    (function () {
+      // Mark body if module script hasn't loaded yet (file:// CORS fallback)
+      document.documentElement.classList.add('no-module-js');
+
+      // Loader fallback — hide loader after timeout if module doesn't handle it
+      function fallbackLoader() {
+        var loader = document.querySelector('.loader-screen');
+        if (loader && !loader.classList.contains('loaded')) {
+          // Animate the loader bar to 100%
+          var bar = loader.querySelector('.loader-bar');
+          var status = loader.querySelector('.loader-status');
+          if (bar) bar.style.width = '100%';
+          if (status) status.textContent = 'Launch Ready';
+          setTimeout(function () {
+            loader.classList.add('loaded');
+            // Show boot messages
+            var bootLines = document.querySelectorAll('.boot-line');
+            bootLines.forEach(function (line, i) {
+              setTimeout(function () { line.classList.add('visible'); }, i * 200);
+            });
+            if (bootLines.length > 0) {
+              setTimeout(function () {
+                bootLines.forEach(function (line) {
+                  line.style.transition = 'opacity 0.5s';
+                  line.style.opacity = '0';
+                });
+              }, 4000);
+            }
+          }, 500);
+        }
+      }
+      // Give modules 3 seconds, then fallback
+      setTimeout(fallbackLoader, 3000);
+
+      // Reveal observer — standalone, no module dependency
+      function initReveals() {
+        var reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children');
+        if (!reveals.length) return;
+        if ('IntersectionObserver' in window) {
+          var obs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                obs.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+          reveals.forEach(function (el) { obs.observe(el); });
+        } else {
+          // No IntersectionObserver — reveal everything
+          reveals.forEach(function (el) { el.classList.add('revealed'); });
+        }
+      }
+
+      // Counter animation — standalone
+      function initCounters() {
+        var counters = document.querySelectorAll('[data-count]');
+        if (!counters.length) return;
+        if ('IntersectionObserver' in window) {
+          var obs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                obs.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.5 });
+          counters.forEach(function (el) { obs.observe(el); });
+        }
+      }
+
+      function animateCounter(el) {
+        var target = parseInt(el.getAttribute('data-count'));
+        var suffix = el.getAttribute('data-suffix') || '';
+        var duration = 2000;
+        var start = performance.now();
+        function update(now) {
+          var elapsed = now - start;
+          var progress = Math.min(elapsed / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 4);
+          el.textContent = Math.round(eased * target) + suffix;
+          if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+      }
+
+      // Hero entrance — standalone
+      function initHeroEntrance() {
+        var badge = document.querySelector('.hero-badge');
+        var subtitle = document.querySelector('.hero-subtitle');
+        var cta = document.querySelector('.hero-cta-group');
+        var scroll = document.querySelector('.hero-scroll');
+        setTimeout(function () {
+          if (badge) { badge.style.transition = 'opacity 0.8s, transform 0.8s'; badge.style.opacity = '1'; badge.style.transform = 'translateY(0)'; }
+          setTimeout(function () {
+            if (subtitle) { subtitle.style.transition = 'opacity 0.8s, transform 0.8s'; subtitle.style.opacity = '1'; subtitle.style.transform = 'translateY(0)'; }
+          }, 400);
+          setTimeout(function () {
+            if (cta) { cta.style.transition = 'opacity 0.8s, transform 0.8s'; cta.style.opacity = '1'; cta.style.transform = 'translateY(0)'; }
+          }, 600);
+          setTimeout(function () {
+            if (scroll) { scroll.style.transition = 'opacity 1s'; scroll.style.opacity = '1'; }
+          }, 900);
+        }, 800);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+          initReveals();
+          initCounters();
+          initHeroEntrance();
+        });
+      } else {
+        initReveals();
+        initCounters();
+        initHeroEntrance();
+      }
+    })();
+  </script>
+
+  <!-- Remove no-module-js flag if module loads successfully -->
+  <script type="module">
+    document.documentElement.classList.remove('no-module-js');
+  </script>
+
+  <!-- Jarvis AI Assistant & Scroll Animations -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const jarvis = document.getElementById('jarvis');
+      const jarvisText = document.getElementById('jarvis-text');
+      if (!jarvis || !jarvisText) return;
+
+      // Section messages - Jarvis speaks when sections enter view
+      const sectionMessages = {
+        'services-preview': "İşte temel hizmetlerimiz. Arka uç sistemlerinden yapay zeka ve otomasyona kadar her şeyi inşa ediyoruz.",
+        'experience-lab': "Three.js ile oluşturulmuş etkileşimli 3D demolar. Döndürmek için sürükleyin, etkileşim için tıklayın!",
+        'game-playground': "Mini oyunlarımızla mola verin! Nişan almak için sürükleyin, ateş etmek için bırakın.",
+        'projects-preview': "En gurur duyduğumuz projelerimizden bazıları; ölçülebilir etki yaratan gerçek yapay zeka destekli platformlar.",
+        'about-preview': "4 uzmandan oluşan küçük ama güçlü bir ekip, 12'den fazla ülkede büyük etki yaratıyor.",
+        'tech-showcase': "TensorFlow'dan Three.js'e kadar teknoloji yığınımız. Her iş için en iyi aracı seçiyoruz.",
+      };
+
+      let currentSection = null;
+      let typingTimeout = null;
+      let hideTimeout = null;
+
+      function showJarvis(message) {
+        clearTimeout(typingTimeout);
+        clearTimeout(hideTimeout);
+
+        jarvis.classList.add('visible', 'typing');
+        jarvis.classList.remove('speaking');
+        jarvisText.textContent = '';
+
+        typingTimeout = setTimeout(() => {
+          jarvis.classList.remove('typing');
+          jarvis.classList.add('speaking');
+          // Type out message
+          let i = 0;
+          function typeChar() {
+            if (i < message.length) {
+              jarvisText.textContent += message[i];
+              i++;
+              setTimeout(typeChar, 20 + Math.random() * 15);
+            }
+          }
+          typeChar();
+
+          // Auto-hide after message
+          hideTimeout = setTimeout(() => {
+            jarvis.classList.remove('visible', 'speaking');
+          }, Math.max(4000, message.length * 50));
+        }, 800);
+      }
+
+      // Observe sections for Jarvis triggers
+      const sections = document.querySelectorAll('.home-section');
+      const jarvisObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            if (id && sectionMessages[id] && currentSection !== id) {
+              currentSection = id;
+              showJarvis(sectionMessages[id]);
+            }
+          }
+        });
+      }, { threshold: 0.3 });
+
+      sections.forEach(s => jarvisObserver.observe(s));
+
+      // Enhanced scroll animations with GSAP
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        // Parallax float for hero orbs
+        gsap.to('.hero-orb-1', {
+          scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 },
+          y: -100, x: 50, scale: 0.8, opacity: 0
+        });
+        gsap.to('.hero-orb-2', {
+          scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 },
+          y: -80, x: -30, scale: 0.8, opacity: 0
+        });
+
+        // Service cards stagger with rotation
+        gsap.utils.toArray('.service-node').forEach((node, i) => {
+          gsap.fromTo(node,
+            { y: 40, opacity: 0, rotateX: 5 },
+            {
+              scrollTrigger: { trigger: node, start: 'top 85%', toggleActions: 'play none none none' },
+              y: 0, opacity: 1, rotateX: 0, duration: 0.6, delay: i * 0.08, ease: 'power3.out'
+            }
+          );
+        });
+
+        // Project capsules slide in alternating
+        gsap.utils.toArray('.project-capsule').forEach((capsule, i) => {
+          gsap.fromTo(capsule,
+            { x: i % 2 === 0 ? -60 : 60, opacity: 0 },
+            {
+              scrollTrigger: { trigger: capsule, start: 'top 85%', toggleActions: 'play none none none' },
+              x: 0, opacity: 1, duration: 0.8, delay: i * 0.1, ease: 'power3.out'
+            }
+          );
+        });
+
+        // Team cards pop in
+        gsap.utils.toArray('.team-card').forEach((card, i) => {
+          gsap.fromTo(card,
+            { y: 50, scale: 0.9, opacity: 0 },
+            {
+              scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none none' },
+              y: 0, scale: 1, opacity: 1, duration: 0.6, delay: i * 0.1, ease: 'back.out(1.2)'
+            }
+          );
+        });
+
+        // Tech pills float in with random timing
+        gsap.utils.toArray('.tech-pill').forEach((pill, i) => {
+          gsap.fromTo(pill,
+            { y: 30, opacity: 0, scale: 0.8 },
+            {
+              scrollTrigger: { trigger: pill.parentElement, start: 'top 80%', toggleActions: 'play none none none' },
+              y: 0, opacity: 1, scale: 1, duration: 0.5, delay: i * 0.04, ease: 'back.out(1.5)'
+            }
+          );
+        });
+
+        // Game cards slide up with bounce
+        gsap.utils.toArray('.game-card').forEach((card, i) => {
+          gsap.fromTo(card,
+            { y: 80, opacity: 0 },
+            {
+              scrollTrigger: { trigger: card, start: 'top 90%', toggleActions: 'play none none none' },
+              y: 0, opacity: 1, duration: 0.8, delay: i * 0.15, ease: 'elastic.out(1, 0.5)'
+            }
+          );
+        });
+
+        // Stats counter zoom
+        gsap.utils.toArray('.stat-item').forEach((item, i) => {
+          gsap.fromTo(item,
+            { scale: 0.5, opacity: 0 },
+            {
+              scrollTrigger: { trigger: item, start: 'top 85%', toggleActions: 'play none none none' },
+              scale: 1, opacity: 1, duration: 0.6, delay: i * 0.1, ease: 'back.out(1.7)'
+            }
+          );
+        });
+
+        // Globe section parallax
+        gsap.from('.globe-canvas-wrap', {
+          scrollTrigger: { trigger: '.globe-canvas-wrap', start: 'top 80%', end: 'bottom 20%', scrub: 1 },
+          rotate: -15, scale: 0.9
+        });
+
+        // CTA section dramatic entrance
+        gsap.fromTo('.cta-section h2',
+          { y: 60, opacity: 0, scale: 0.95 },
+          {
+            scrollTrigger: { trigger: '.cta-section', start: 'top 75%', toggleActions: 'play none none none' },
+            y: 0, opacity: 1, scale: 1, duration: 1, ease: 'power4.out'
+          }
+        );
+      }
+    });
+  </script>
+
+  <!-- Mini Games: Soccer, Basketball, Bowling -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // ========== SOCCER GOAL KICK ==========
+      const soccerCanvas = document.getElementById('soccer-canvas');
+      if (soccerCanvas) {
+        const ctx = soccerCanvas.getContext('2d');
+        let soccerScore = 0;
+        let ball = { x: 0, y: 0, vx: 0, vy: 0, r: 12, active: false };
+        let dragStart = null;
+        let isDragging = false;
+
+        function resizeSoccer() {
+          const rect = soccerCanvas.parentElement.getBoundingClientRect();
+          soccerCanvas.width = rect.width;
+          soccerCanvas.height = rect.height;
+          resetSoccerBall();
+        }
+        function resetSoccerBall() {
+          ball.x = soccerCanvas.width / 2;
+          ball.y = soccerCanvas.height * 0.65;
+          ball.vx = 0; ball.vy = 0;
+          ball.active = false;
+        }
+
+        function drawSoccer() {
+          const w = soccerCanvas.width, h = soccerCanvas.height;
+          // Field
+          ctx.fillStyle = '#E8F5E9';
+          ctx.fillRect(0, 0, w, h);
+          // Field lines
+          ctx.strokeStyle = 'rgba(76,175,80,0.3)';
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(0, h / 2); ctx.lineTo(w, h / 2); ctx.stroke();
+          ctx.beginPath(); ctx.arc(w / 2, h / 2, 40, 0, Math.PI * 2); ctx.stroke();
+          // Goal
+          const gw = 120, gh = 50;
+          const gx = w / 2 - gw / 2, gy = 10;
+          ctx.fillStyle = 'rgba(99,102,241,0.1)';
+          ctx.fillRect(gx, gy, gw, gh);
+          ctx.strokeStyle = '#6366F1';
+          ctx.lineWidth = 3;
+          ctx.strokeRect(gx, gy, gw, gh);
+          // Net pattern
+          ctx.strokeStyle = 'rgba(99,102,241,0.15)';
+          ctx.lineWidth = 1;
+          for (let i = gx; i < gx + gw; i += 10) { ctx.beginPath(); ctx.moveTo(i, gy); ctx.lineTo(i, gy + gh); ctx.stroke(); }
+          for (let j = gy; j < gy + gh; j += 10) { ctx.beginPath(); ctx.moveTo(gx, j); ctx.lineTo(gx + gw, j); ctx.stroke(); }
+          // Ball
+          ctx.beginPath();
+          ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fill();
+          ctx.strokeStyle = '#333';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          // Pentagon pattern on ball
+          ctx.fillStyle = '#333';
+          ctx.beginPath(); ctx.arc(ball.x, ball.y, 4, 0, Math.PI * 2); ctx.fill();
+          // Drag arrow
+          if (isDragging && dragStart) {
+            ctx.strokeStyle = 'rgba(99,102,241,0.6)';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(ball.x, ball.y);
+            ctx.lineTo(dragStart.x, dragStart.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+          }
+        }
+
+        function updateSoccer() {
+          if (ball.active) {
+            ball.x += ball.vx;
+            ball.y += ball.vy;
+            ball.vx *= 0.99;
+            ball.vy *= 0.99;
+            // Check goal
+            const gw = 120, gx = soccerCanvas.width / 2 - gw / 2, gy = 10, gh = 50;
+            if (ball.y - ball.r <= gy + gh && ball.x > gx && ball.x < gx + gw && ball.y > gy) {
+              soccerScore++;
+              document.getElementById('soccer-score').textContent = 'Score: ' + soccerScore;
+              setTimeout(resetSoccerBall, 500);
+              ball.active = false;
+            }
+            // Out of bounds
+            if (ball.x < 0 || ball.x > soccerCanvas.width || ball.y < 0 || ball.y > soccerCanvas.height) {
+              setTimeout(resetSoccerBall, 300);
+              ball.active = false;
+            }
+          }
+          drawSoccer();
+          requestAnimationFrame(updateSoccer);
+        }
+
+        soccerCanvas.addEventListener('pointerdown', (e) => {
+          if (ball.active) return;
+          const rect = soccerCanvas.getBoundingClientRect();
+          const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+          const dx = mx - ball.x, dy = my - ball.y;
+          if (Math.sqrt(dx * dx + dy * dy) < 30) { isDragging = true; dragStart = { x: mx, y: my }; }
+        });
+        soccerCanvas.addEventListener('pointermove', (e) => {
+          if (!isDragging) return;
+          const rect = soccerCanvas.getBoundingClientRect();
+          dragStart = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+        });
+        soccerCanvas.addEventListener('pointerup', () => {
+          if (!isDragging) return;
+          isDragging = false;
+          const power = 0.15;
+          ball.vx = (ball.x - dragStart.x) * power;
+          ball.vy = (ball.y - dragStart.y) * power;
+          ball.active = true;
+          dragStart = null;
+        });
+
+        window.addEventListener('resize', resizeSoccer);
+        resizeSoccer();
+        updateSoccer();
+      }
+
+      // ========== BASKETBALL HOOPS ==========
+      const bbCanvas = document.getElementById('basketball-canvas');
+      if (bbCanvas) {
+        const ctx2 = bbCanvas.getContext('2d');
+        let bbScore = 0;
+        let bb = { x: 0, y: 0, vx: 0, vy: 0, r: 14, active: false };
+        let bbDrag = null, bbDragging = false;
+
+        function resizeBB() {
+          const rect = bbCanvas.parentElement.getBoundingClientRect();
+          bbCanvas.width = rect.width;
+          bbCanvas.height = rect.height;
+          resetBB();
+        }
+        function resetBB() {
+          bb.x = bbCanvas.width / 2;
+          bb.y = bbCanvas.height * 0.65;
+          bb.vx = 0; bb.vy = 0;
+          bb.active = false;
+        }
+
+        function drawBB() {
+          const w = bbCanvas.width, h = bbCanvas.height;
+          // Court
+          ctx2.fillStyle = '#FFF8E1';
+          ctx2.fillRect(0, 0, w, h);
+          // Court lines
+          ctx2.strokeStyle = 'rgba(255,152,0,0.2)';
+          ctx2.lineWidth = 2;
+          ctx2.beginPath(); ctx2.arc(w / 2, h / 2, 50, 0, Math.PI * 2); ctx2.stroke();
+          // Backboard
+          const bx = w * 0.78, by = 40;
+          ctx2.fillStyle = '#E0E0E0';
+          ctx2.fillRect(bx, by, 8, 80);
+          ctx2.strokeStyle = '#999';
+          ctx2.lineWidth = 2;
+          ctx2.strokeRect(bx, by, 8, 80);
+          // Rim
+          const rimY = by + 65;
+          ctx2.strokeStyle = '#EF4444';
+          ctx2.lineWidth = 3;
+          ctx2.beginPath();
+          ctx2.moveTo(bx - 30, rimY);
+          ctx2.lineTo(bx, rimY);
+          ctx2.stroke();
+          // Net lines
+          ctx2.strokeStyle = 'rgba(239,68,68,0.3)';
+          ctx2.lineWidth = 1;
+          for (let i = 0; i < 5; i++) {
+            ctx2.beginPath();
+            ctx2.moveTo(bx - 30 + i * 7, rimY);
+            ctx2.lineTo(bx - 25 + i * 5, rimY + 25);
+            ctx2.stroke();
+          }
+          // Small square on backboard
+          ctx2.strokeStyle = '#EF4444';
+          ctx2.lineWidth = 1;
+          ctx2.strokeRect(bx, by + 40, 8, 25);
+          // Ball
+          ctx2.beginPath();
+          ctx2.arc(bb.x, bb.y, bb.r, 0, Math.PI * 2);
+          const grad = ctx2.createRadialGradient(bb.x - 3, bb.y - 3, 2, bb.x, bb.y, bb.r);
+          grad.addColorStop(0, '#FF8F00');
+          grad.addColorStop(1, '#E65100');
+          ctx2.fillStyle = grad;
+          ctx2.fill();
+          ctx2.strokeStyle = '#BF360C';
+          ctx2.lineWidth = 1.5;
+          ctx2.stroke();
+          // Ball lines
+          ctx2.strokeStyle = 'rgba(0,0,0,0.2)';
+          ctx2.beginPath(); ctx2.moveTo(bb.x - bb.r, bb.y); ctx2.lineTo(bb.x + bb.r, bb.y); ctx2.stroke();
+          ctx2.beginPath(); ctx2.arc(bb.x, bb.y, bb.r, -0.3, 0.3); ctx2.stroke();
+          // Drag arrow
+          if (bbDragging && bbDrag) {
+            ctx2.strokeStyle = 'rgba(99,102,241,0.5)';
+            ctx2.lineWidth = 2;
+            ctx2.setLineDash([4, 4]);
+            ctx2.beginPath(); ctx2.moveTo(bb.x, bb.y); ctx2.lineTo(bbDrag.x, bbDrag.y); ctx2.stroke();
+            ctx2.setLineDash([]);
+          }
+        }
+
+        function updateBB() {
+          if (bb.active) {
+            bb.x += bb.vx;
+            bb.y += bb.vy;
+            bb.vy += 0.25; // gravity
+            bb.vx *= 0.995;
+            // Check rim score
+            const bx = bbCanvas.width * 0.78, rimY = 40 + 65;
+            if (bb.y >= rimY - 5 && bb.y <= rimY + 10 && bb.x >= bx - 32 && bb.x <= bx) {
+              bbScore++;
+              document.getElementById('basketball-score').textContent = 'Score: ' + bbScore;
+              setTimeout(resetBB, 600);
+              bb.active = false;
+            }
+            // Bounce off backboard
+            if (bb.x + bb.r >= bbCanvas.width * 0.78 && bb.y >= 40 && bb.y <= 120) {
+              bb.vx = -Math.abs(bb.vx) * 0.5;
+            }
+            // Out of bounds
+            if (bb.x < -20 || bb.x > bbCanvas.width + 20 || bb.y > bbCanvas.height + 20) {
+              setTimeout(resetBB, 300);
+              bb.active = false;
+            }
+            // Floor bounce
+            if (bb.y + bb.r > bbCanvas.height) {
+              bb.y = bbCanvas.height - bb.r;
+              bb.vy = -Math.abs(bb.vy) * 0.5;
+              if (Math.abs(bb.vy) < 1) { setTimeout(resetBB, 300); bb.active = false; }
+            }
+          }
+          drawBB();
+          requestAnimationFrame(updateBB);
+        }
+
+        bbCanvas.addEventListener('pointerdown', (e) => {
+          if (bb.active) return;
+          const rect = bbCanvas.getBoundingClientRect();
+          const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+          if (Math.sqrt((mx - bb.x) ** 2 + (my - bb.y) ** 2) < 35) { bbDragging = true; bbDrag = { x: mx, y: my }; }
+        });
+        bbCanvas.addEventListener('pointermove', (e) => {
+          if (!bbDragging) return;
+          const rect = bbCanvas.getBoundingClientRect();
+          bbDrag = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+        });
+        bbCanvas.addEventListener('pointerup', () => {
+          if (!bbDragging) return;
+          bbDragging = false;
+          bb.vx = (bb.x - bbDrag.x) * 0.12;
+          bb.vy = (bb.y - bbDrag.y) * 0.12;
+          bb.active = true;
+          bbDrag = null;
+        });
+
+        window.addEventListener('resize', resizeBB);
+        resizeBB();
+        updateBB();
+      }
+
+      // ========== BOWLING ==========
+      const bowlCanvas = document.getElementById('bowling-canvas');
+      if (bowlCanvas) {
+        const ctx3 = bowlCanvas.getContext('2d');
+        let pinsDown = 0;
+        let bowlBall = { x: 0, y: 0, vx: 0, vy: 0, r: 14, active: false };
+        let pins = [];
+        let bowlDrag = null, bowlDragging = false;
+
+        function resizeBowl() {
+          const rect = bowlCanvas.parentElement.getBoundingClientRect();
+          bowlCanvas.width = rect.width;
+          bowlCanvas.height = rect.height;
+          resetBowl();
+        }
+        function resetBowl() {
+          bowlBall.x = bowlCanvas.width / 2;
+          bowlBall.y = bowlCanvas.height * 0.65;
+          bowlBall.vx = 0; bowlBall.vy = 0;
+          bowlBall.active = false;
+          // Setup pins in triangle (4 rows)
+          pins = [];
+          const startX = bowlCanvas.width / 2, startY = 70;
+          const spacing = 22;
+          const rows = [[0], [-1, 1], [-2, 0, 2], [-3, -1, 1, 3]];
+          rows.forEach((row, ri) => {
+            row.forEach(offset => {
+              pins.push({ x: startX + offset * spacing / 2, y: startY + ri * spacing, r: 8, hit: false });
+            });
+          });
+          pinsDown = 0;
+          document.getElementById('bowling-score').textContent = 'Pins: 0';
+        }
+
+        function drawBowl() {
+          const w = bowlCanvas.width, h = bowlCanvas.height;
+          // Lane
+          ctx3.fillStyle = '#FBE9E7';
+          ctx3.fillRect(0, 0, w, h);
+          // Lane lines
+          const laneW = 140, lx = w / 2 - laneW / 2;
+          ctx3.fillStyle = '#FFCCBC';
+          ctx3.fillRect(lx, 0, laneW, h);
+          ctx3.strokeStyle = 'rgba(0,0,0,0.08)';
+          ctx3.lineWidth = 1;
+          ctx3.setLineDash([8, 8]);
+          ctx3.beginPath(); ctx3.moveTo(lx, 0); ctx3.lineTo(lx, h); ctx3.stroke();
+          ctx3.beginPath(); ctx3.moveTo(lx + laneW, 0); ctx3.lineTo(lx + laneW, h); ctx3.stroke();
+          ctx3.setLineDash([]);
+          // Guide arrows
+          ctx3.fillStyle = 'rgba(99,102,241,0.15)';
+          for (let i = 0; i < 3; i++) {
+            const ax = w / 2 + (i - 1) * 20, ay = h * 0.55;
+            ctx3.beginPath(); ctx3.moveTo(ax, ay); ctx3.lineTo(ax - 5, ay + 12); ctx3.lineTo(ax + 5, ay + 12); ctx3.closePath(); ctx3.fill();
+          }
+          // Pins
+          pins.forEach(p => {
+            if (p.hit) return;
+            ctx3.beginPath();
+            ctx3.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx3.fillStyle = '#FFFFFF';
+            ctx3.fill();
+            ctx3.strokeStyle = '#EF4444';
+            ctx3.lineWidth = 2;
+            ctx3.stroke();
+            // Red stripe
+            ctx3.beginPath();
+            ctx3.arc(p.x, p.y - 3, 3, 0, Math.PI * 2);
+            ctx3.fillStyle = '#EF4444';
+            ctx3.fill();
+          });
+          // Ball
+          ctx3.beginPath();
+          ctx3.arc(bowlBall.x, bowlBall.y, bowlBall.r, 0, Math.PI * 2);
+          const g3 = ctx3.createRadialGradient(bowlBall.x - 2, bowlBall.y - 2, 2, bowlBall.x, bowlBall.y, bowlBall.r);
+          g3.addColorStop(0, '#7C3AED');
+          g3.addColorStop(1, '#4C1D95');
+          ctx3.fillStyle = g3;
+          ctx3.fill();
+          // Finger holes
+          ctx3.fillStyle = 'rgba(0,0,0,0.3)';
+          ctx3.beginPath(); ctx3.arc(bowlBall.x - 3, bowlBall.y - 4, 2.5, 0, Math.PI * 2); ctx3.fill();
+          ctx3.beginPath(); ctx3.arc(bowlBall.x + 3, bowlBall.y - 4, 2.5, 0, Math.PI * 2); ctx3.fill();
+          ctx3.beginPath(); ctx3.arc(bowlBall.x, bowlBall.y + 2, 2, 0, Math.PI * 2); ctx3.fill();
+          // Drag
+          if (bowlDragging && bowlDrag) {
+            ctx3.strokeStyle = 'rgba(124,58,237,0.5)';
+            ctx3.lineWidth = 2;
+            ctx3.setLineDash([4, 4]);
+            ctx3.beginPath(); ctx3.moveTo(bowlBall.x, bowlBall.y); ctx3.lineTo(bowlDrag.x, bowlDrag.y); ctx3.stroke();
+            ctx3.setLineDash([]);
+          }
+        }
+
+        function updateBowl() {
+          if (bowlBall.active) {
+            bowlBall.x += bowlBall.vx;
+            bowlBall.y += bowlBall.vy;
+            bowlBall.vx *= 0.995;
+            bowlBall.vy *= 0.995;
+            // Check pin collisions
+            pins.forEach(p => {
+              if (p.hit) return;
+              const dx = bowlBall.x - p.x, dy = bowlBall.y - p.y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < bowlBall.r + p.r) {
+                p.hit = true;
+                pinsDown++;
+                document.getElementById('bowling-score').textContent = 'Pins: ' + pinsDown;
+              }
+            });
+            // Out of bounds
+            if (bowlBall.y < -30 || bowlBall.x < -30 || bowlBall.x > bowlCanvas.width + 30 || bowlBall.y > bowlCanvas.height + 30) {
+              setTimeout(resetBowl, 800);
+              bowlBall.active = false;
+            }
+            if (Math.abs(bowlBall.vx) < 0.05 && Math.abs(bowlBall.vy) < 0.05) {
+              setTimeout(resetBowl, 800);
+              bowlBall.active = false;
+            }
+          }
+          drawBowl();
+          requestAnimationFrame(updateBowl);
+        }
+
+        bowlCanvas.addEventListener('pointerdown', (e) => {
+          if (bowlBall.active) return;
+          const rect = bowlCanvas.getBoundingClientRect();
+          const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+          if (Math.sqrt((mx - bowlBall.x) ** 2 + (my - bowlBall.y) ** 2) < 30) { bowlDragging = true; bowlDrag = { x: mx, y: my }; }
+        });
+        bowlCanvas.addEventListener('pointermove', (e) => {
+          if (!bowlDragging) return;
+          const rect = bowlCanvas.getBoundingClientRect();
+          bowlDrag = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+        });
+        bowlCanvas.addEventListener('pointerup', () => {
+          if (!bowlDragging) return;
+          bowlDragging = false;
+          bowlBall.vx = (bowlBall.x - bowlDrag.x) * 0.12;
+          bowlBall.vy = (bowlBall.y - bowlDrag.y) * 0.12;
+          bowlBall.active = true;
+          bowlDrag = null;
+        });
+
+        window.addEventListener('resize', resizeBowl);
+        resizeBowl();
+        updateBowl();
+      }
+    });
+  </script>
+
+  <!-- Experience Lab 3D Scenes -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof THREE === 'undefined') return;
+
+      function createScene(canvasId, fov = 50) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return null;
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(fov, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setClearColor(0xF8FAFC, 1);
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+        const resize = () => {
+          const w = canvas.parentElement.clientWidth;
+          const h = canvas.clientHeight || w * 0.625;
+          renderer.setSize(w, h);
+          camera.aspect = w / h;
+          camera.updateProjectionMatrix();
+        };
+        window.addEventListener('resize', resize);
+        return { scene, camera, renderer, canvas, resize };
+      }
+
+      function addDragRotation(canvas, mesh, sensitivity = 0.005) {
+        let isDragging = false;
+        let prev = { x: 0, y: 0 };
+        let vel = { x: 0, y: 0 };
+        canvas.addEventListener('pointerdown', e => { isDragging = true; prev = { x: e.clientX, y: e.clientY }; canvas.setPointerCapture(e.pointerId); });
+        canvas.addEventListener('pointermove', e => { if (!isDragging) return; vel.x += (e.clientY - prev.y) * sensitivity; vel.y += (e.clientX - prev.x) * sensitivity; prev = { x: e.clientX, y: e.clientY }; });
+        canvas.addEventListener('pointerup', () => isDragging = false);
+        return vel;
+      }
+
+      // 1. MORPHING GEOMETRY
+      (function () {
+        const s = createScene('exp-morph');
+        if (!s) return;
+        s.camera.position.z = 4;
+        const geo = new THREE.IcosahedronGeometry(1.5, 5);
+        const origPos = geo.attributes.position.array.slice();
+        const mat = new THREE.MeshPhongMaterial({ color: 0x6366F1, emissive: 0x312E81, emissiveIntensity: 0.4, wireframe: true, transparent: true, opacity: 0.3 });
+        const mesh = new THREE.Mesh(geo, mat);
+        s.scene.add(mesh);
+        const inner = new THREE.Mesh(new THREE.IcosahedronGeometry(0.7, 3), new THREE.MeshPhongMaterial({ color: 0x818CF8, emissive: 0x6366F1, emissiveIntensity: 0.6, transparent: true, opacity: 0.1 }));
+        s.scene.add(inner);
+        s.scene.add(new THREE.AmbientLight(0x222222, 0.5));
+        const pl1 = new THREE.PointLight(0x6366F1, 1.5, 15); pl1.position.set(3, 3, 3); s.scene.add(pl1);
+        const pl2 = new THREE.PointLight(0x8B5CF6, 0.8, 10); pl2.position.set(-3, -2, 2); s.scene.add(pl2);
+        const vel = addDragRotation(s.canvas, mesh);
+        const clock = new THREE.Clock();
+        function animate() {
+          requestAnimationFrame(animate);
+          const t = clock.getElapsedTime();
+          const pos = geo.attributes.position.array;
+          for (let i = 0; i < pos.length; i += 3) {
+            const ox = origPos[i], oy = origPos[i + 1], oz = origPos[i + 2];
+            const d = Math.sqrt(ox * ox + oy * oy + oz * oz);
+            const morph = Math.sin(t * 0.6 + d * 2.5) * 0.2 + Math.sin(t * 0.3 + ox * 4) * 0.1;
+            pos[i] = ox * (1 + morph); pos[i + 1] = oy * (1 + morph); pos[i + 2] = oz * (1 + morph);
+          }
+          geo.attributes.position.needsUpdate = true; geo.computeVertexNormals();
+          mesh.rotation.x += vel.x + 0.002; mesh.rotation.y += vel.y + 0.003;
+          inner.rotation.x = -mesh.rotation.x * 0.6; inner.rotation.y = -mesh.rotation.y * 0.4;
+          inner.scale.setScalar(1 + Math.sin(t * 1.5) * 0.1);
+          vel.x *= 0.97; vel.y *= 0.97;
+          s.renderer.render(s.scene, s.camera);
+        }
+        animate();
+      })();
+
+      // 2. PARTICLE GALAXY
+      (function () {
+        const s = createScene('exp-galaxy', 60);
+        if (!s) return;
+        s.camera.position.z = 5; s.camera.position.y = 2; s.camera.lookAt(0, 0, 0);
+        const count = 10000;
+        const geo = new THREE.BufferGeometry();
+        const positions = new Float32Array(count * 3);
+        const colors = new Float32Array(count * 3);
+        const arms = 5;
+        const colorInner = new THREE.Color(0x818CF8);
+        const colorMid = new THREE.Color(0x6366F1);
+        const colorOuter = new THREE.Color(0x8B5CF6);
+        for (let i = 0; i < count; i++) {
+          const radius = Math.random() * 4;
+          const arm = Math.floor(Math.random() * arms);
+          const armAngle = (arm / arms) * Math.PI * 2;
+          const spinAngle = radius * 1.2;
+          const scatter = (Math.random() - 0.5) * 0.6 * (1 + radius * 0.3);
+          positions[i * 3] = Math.cos(armAngle + spinAngle) * radius + scatter;
+          positions[i * 3 + 1] = (Math.random() - 0.5) * 0.3 * (1 + radius * 0.2);
+          positions[i * 3 + 2] = Math.sin(armAngle + spinAngle) * radius + scatter;
+          const mixRatio = radius / 4;
+          const c = new THREE.Color().lerpColors(mixRatio < 0.5 ? colorInner : colorMid, mixRatio < 0.5 ? colorMid : colorOuter, mixRatio < 0.5 ? mixRatio * 2 : (mixRatio - 0.5) * 2);
+          colors[i * 3] = c.r; colors[i * 3 + 1] = c.g; colors[i * 3 + 2] = c.b;
+        }
+        geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+        const points = new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.03, vertexColors: true, transparent: true, opacity: 0.8, sizeAttenuation: true }));
+        s.scene.add(points);
+        s.scene.add(new THREE.Mesh(new THREE.SphereGeometry(0.15, 16, 16), new THREE.MeshBasicMaterial({ color: 0x818CF8, transparent: true, opacity: 0.6 })));
+        const mouse = { x: 0, y: 0 };
+        s.canvas.addEventListener('mousemove', e => { const rect = s.canvas.getBoundingClientRect(); mouse.x = ((e.clientX - rect.left) / rect.width - 0.5) * 2; mouse.y = ((e.clientY - rect.top) / rect.height - 0.5) * 2; });
+        const clock = new THREE.Clock();
+        function animate() {
+          requestAnimationFrame(animate);
+          points.rotation.y = clock.getElapsedTime() * 0.08;
+          s.camera.position.x += (mouse.x * 2 - s.camera.position.x) * 0.02;
+          s.camera.position.y += (-mouse.y * 1.5 + 2 - s.camera.position.y) * 0.02;
+          s.camera.lookAt(0, 0, 0);
+          s.renderer.render(s.scene, s.camera);
+        }
+        animate();
+      })();
+
+      // 3. PHYSICS PLAYGROUND
+      (function () {
+        const s = createScene('exp-physics', 50);
+        if (!s) return;
+        s.camera.position.set(0, 5, 12); s.camera.lookAt(0, 0, 0);
+        s.scene.add(new THREE.AmbientLight(0x333333, 0.6));
+        const dl = new THREE.DirectionalLight(0x6366F1, 0.8); dl.position.set(5, 10, 5); s.scene.add(dl);
+        const pl = new THREE.PointLight(0x8B5CF6, 0.5, 20); pl.position.set(-5, 5, -5); s.scene.add(pl);
+        const ground = new THREE.Mesh(new THREE.PlaneGeometry(20, 20, 30, 30), new THREE.MeshPhongMaterial({ color: 0x1E1B4B, wireframe: true, transparent: true, opacity: 0.3 }));
+        ground.rotation.x = -Math.PI / 2; ground.position.y = -3; s.scene.add(ground);
+        let spawnType = 'sphere';
+        const bodies = [], maxBodies = 40;
+        function spawnObject(x, z) {
+          let geo, color;
+          if (spawnType === 'sphere') { geo = new THREE.SphereGeometry(0.3 + Math.random() * 0.3, 16, 16); color = 0x6366F1; }
+          else if (spawnType === 'cube') { const sz = 0.3 + Math.random() * 0.3; geo = new THREE.BoxGeometry(sz, sz, sz); color = 0x8B5CF6; }
+          else { geo = new THREE.TetrahedronGeometry(0.3 + Math.random() * 0.2); color = 0x06B6D4; }
+          const mat = new THREE.MeshPhongMaterial({ color, emissive: color, emissiveIntensity: 0.15, shininess: 100, transparent: true, opacity: 0.85 });
+          const mesh = new THREE.Mesh(geo, mat);
+          mesh.position.set(x, 6 + Math.random() * 3, z);
+          mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+          s.scene.add(mesh);
+          bodies.push({ mesh, vel: { x: (Math.random() - 0.5) * 0.1, y: 0, z: (Math.random() - 0.5) * 0.1 }, rotVel: { x: (Math.random() - 0.5) * 0.05, y: (Math.random() - 0.5) * 0.05 }, bounceY: -2.7 });
+          if (bodies.length > maxBodies) { const old = bodies.shift(); s.scene.remove(old.mesh); old.mesh.geometry.dispose(); old.mesh.material.dispose(); }
+        }
+        s.canvas.addEventListener('click', e => { const rect = s.canvas.getBoundingClientRect(); spawnObject(((e.clientX - rect.left) / rect.width - 0.5) * 10, ((e.clientY - rect.top) / rect.height - 0.5) * -6); });
+        const btns = document.querySelectorAll('.exp-control-btn');
+        btns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (btn.dataset.reset) { bodies.forEach(b => { s.scene.remove(b.mesh); b.mesh.geometry.dispose(); b.mesh.material.dispose(); }); bodies.length = 0; return; }
+            btns.forEach(b => { if (!b.dataset.reset) b.classList.remove('active'); }); btn.classList.add('active'); spawnType = btn.dataset.spawn;
+          });
+        });
+        const clock = new THREE.Clock();
+        function animate() {
+          requestAnimationFrame(animate);
+          const dt = Math.min(clock.getDelta(), 0.05);
+          bodies.forEach(b => {
+            b.vel.y -= 9.8 * dt;
+            b.mesh.position.x += b.vel.x; b.mesh.position.y += b.vel.y * dt; b.mesh.position.z += b.vel.z;
+            b.mesh.rotation.x += b.rotVel.x; b.mesh.rotation.y += b.rotVel.y;
+            if (b.mesh.position.y <= b.bounceY) { b.mesh.position.y = b.bounceY; b.vel.y = Math.abs(b.vel.y) * 0.6; b.rotVel.x *= 0.9; b.rotVel.y *= 0.9; if (Math.abs(b.vel.y) < 0.1) b.vel.y = 0; }
+            if (Math.abs(b.mesh.position.x) > 5) { b.vel.x *= -0.7; b.mesh.position.x = Math.sign(b.mesh.position.x) * 5; }
+            if (Math.abs(b.mesh.position.z) > 4) { b.vel.z *= -0.7; b.mesh.position.z = Math.sign(b.mesh.position.z) * 4; }
+          });
+          s.renderer.render(s.scene, s.camera);
+        }
+        animate();
+        for (let i = 0; i < 5; i++) { setTimeout(() => spawnObject((Math.random() - 0.5) * 4, (Math.random() - 0.5) * 3), i * 300); }
+      })();
+
+      // 4. WAVE TERRAIN
+      (function () {
+        const s = createScene('exp-terrain', 50);
+        if (!s) return;
+        s.camera.position.set(0, 4, 6); s.camera.lookAt(0, 0, 0);
+        const tGeo = new THREE.PlaneGeometry(10, 10, 80, 80);
+        tGeo.rotateX(-Math.PI / 2);
+        const origPositions = tGeo.attributes.position.array.slice();
+        const tMat = new THREE.MeshPhongMaterial({ color: 0x1E1B4B, wireframe: true, transparent: true, opacity: 0.5, vertexColors: true });
+        const vCount = tGeo.attributes.position.count;
+        const vColors = new Float32Array(vCount * 3);
+        tGeo.setAttribute('color', new THREE.BufferAttribute(vColors, 3));
+        const terrain = new THREE.Mesh(tGeo, tMat);
+        s.scene.add(terrain);
+        s.scene.add(new THREE.AmbientLight(0x222222, 0.5));
+        const tl1 = new THREE.PointLight(0x6366F1, 1.2, 15); tl1.position.set(3, 5, 3); s.scene.add(tl1);
+        const tl2 = new THREE.PointLight(0x8B5CF6, 0.6, 12); tl2.position.set(-3, 4, -3); s.scene.add(tl2);
+        const lowColor = new THREE.Color(0xE0E7FF);
+        const midColor = new THREE.Color(0x6366F1);
+        const highColor = new THREE.Color(0x818CF8);
+        const vel = addDragRotation(s.canvas, terrain);
+        const clock = new THREE.Clock();
+        function animate() {
+          requestAnimationFrame(animate);
+          const t = clock.getElapsedTime();
+          const pos = tGeo.attributes.position.array;
+          const col = tGeo.attributes.color.array;
+          for (let i = 0; i < pos.length; i += 3) {
+            const x = origPositions[i], z = origPositions[i + 2];
+            const height = Math.sin(x * 0.5 + t * 0.8) * 0.6 + Math.cos(z * 0.5 + t * 0.6) * 0.4 + Math.sin((x + z) * 0.3 + t * 0.4) * 0.3;
+            pos[i + 1] = height;
+            const h01 = (height + 1.3) / 2.6;
+            const c = new THREE.Color().lerpColors(h01 < 0.5 ? lowColor : midColor, h01 < 0.5 ? midColor : highColor, h01 < 0.5 ? h01 * 2 : (h01 - 0.5) * 2);
+            col[i] = c.r; col[i + 1] = c.g; col[i + 2] = c.b;
+          }
+          tGeo.attributes.position.needsUpdate = true; tGeo.attributes.color.needsUpdate = true; tGeo.computeVertexNormals();
+          terrain.rotation.y += vel.y; vel.x *= 0.96; vel.y *= 0.96;
+          s.renderer.render(s.scene, s.camera);
+        }
+        animate();
+      })();
+
+      // 5. DNA DOUBLE HELIX
+      (function () {
+        const s = createScene('exp-dna', 50);
+        if (!s) return;
+        s.camera.position.set(0, 0, 6);
+        const group = new THREE.Group();
+        s.scene.add(group);
+        const sphereGeo = new THREE.SphereGeometry(0.08, 12, 12);
+        const amber = new THREE.MeshPhongMaterial({ color: 0x6366F1, emissive: 0x312E81, emissiveIntensity: 0.4 });
+        const violet = new THREE.MeshPhongMaterial({ color: 0x8B5CF6, emissive: 0x2D1B69, emissiveIntensity: 0.4 });
+        const connMat = new THREE.MeshBasicMaterial({ color: 0x303040, transparent: true, opacity: 0.3 });
+        const pairs = 40, radius = 1, height = 8, turns = 3;
+        for (let i = 0; i < pairs; i++) {
+          const frac = i / pairs;
+          const angle = frac * Math.PI * 2 * turns;
+          const y = frac * height - height / 2;
+          const x1 = Math.cos(angle) * radius, z1 = Math.sin(angle) * radius;
+          const s1 = new THREE.Mesh(sphereGeo, amber); s1.position.set(x1, y, z1); group.add(s1);
+          const x2 = Math.cos(angle + Math.PI) * radius, z2 = Math.sin(angle + Math.PI) * radius;
+          const s2 = new THREE.Mesh(sphereGeo, violet); s2.position.set(x2, y, z2); group.add(s2);
+          if (i % 2 === 0) {
+            const connGeo = new THREE.CylinderGeometry(0.015, 0.015, radius * 2, 4); connGeo.rotateZ(Math.PI / 2);
+            const conn = new THREE.Mesh(connGeo, connMat); conn.position.set((x1 + x2) / 2, y, (z1 + z2) / 2); conn.lookAt(x1, y, z1); group.add(conn);
+          }
+        }
+        s.scene.add(new THREE.AmbientLight(0x222222, 0.6));
+        const dl1 = new THREE.PointLight(0x6366F1, 1, 15); dl1.position.set(3, 3, 3); s.scene.add(dl1);
+        const dl2 = new THREE.PointLight(0x8B5CF6, 0.6, 12); dl2.position.set(-3, -2, 2); s.scene.add(dl2);
+        const vel = addDragRotation(s.canvas, group);
+        function animate() {
+          requestAnimationFrame(animate);
+          group.rotation.y += vel.y + 0.005; group.rotation.x += vel.x;
+          vel.x *= 0.97; vel.y *= 0.97;
+          s.renderer.render(s.scene, s.camera);
+        }
+        animate();
+      })();
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="CodeWaft Projects Vault — Explore our classified tech artifacts and deployed solutions.">
+  <title>Projects Vault — CodeWaft</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="../css-files/global.css">
+  <link rel="stylesheet" href="../css-files/layout.css">
+  <link rel="stylesheet" href="../css-files/animations.css">
+  <link rel="stylesheet" href="../css-files/pages/projects.css">
+</head>
+
+<body>
+
+
+  <div class="noise-overlay"></div>
+  <div class="grid-bg"></div>
+  <div class="scroll-progress"></div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo"><span class="logo-bracket">{</span>CW<span class="logo-dot">.</span><span
+          class="logo-bracket">}</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html" class="nav-link">Ana Sayfa</a></li>
+        <li><a href="about.html" class="nav-link">Hakkımızda</a></li>
+        <li><a href="services.html" class="nav-link">Hizmetler</a></li>
+        <li><a href="process.html" class="nav-link">Süreçlerimiz</a></li>
+        <li><a href="projects.html" class="nav-link active">Projeler</a></li>
+      </ul>
+      <a href="contact.html" class="nav-cta magnetic">Bize Ulaşın →</a>
+      <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav-mobile">
+    <a href="../index.html" class="nav-link">Ana Sayfa</a>
+    <a href="about.html" class="nav-link">Hakkımızda</a>
+    <a href="services.html" class="nav-link">Hizmetler</a>
+    <a href="process.html" class="nav-link">Süreçlerimiz</a>
+    <a href="projects.html" class="nav-link">Projeler</a>
+    <a href="tech.html" class="nav-link">Teknolojiler</a>
+    <a href="contact.html" class="nav-link">İletişim</a>
+  </div>
+
+  <div class="page-wrapper">
+
+    <header class="page-header">
+      <div class="container">
+        <div class="page-header-label">Projeler Kasası</div>
+        <h1>Sınıflandırılmış <span class="gradient-text">Arşiv</span></h1>
+        <p>Mühendislik laboratuvarımızdan özenle seçilmiş dağıtımlar. Her proje; hassasiyet, performans ve inovasyonun
+          bir kanıtıdır.</p>
+      </div>
+    </header>
+
+    <section class="projects-vault">
+      <div class="container">
+
+        <!-- Filters -->
+        <div class="vault-filters reveal">
+          <button class="vault-filter active" data-filter="all">Tüm Projeler</button>
+          <button class="vault-filter" data-filter="ai">Yapay Zeka / Makine Öğrenimi</button>
+          <button class="vault-filter" data-filter="web">Web Platformu</button>
+          <button class="vault-filter" data-filter="mobile">Mobil</button>
+          <button class="vault-filter" data-filter="cloud">Bulut</button>
+          <button class="vault-filter" data-filter="automation">Otomasyon</button>
+          <button class="vault-filter" data-filter="devops">DevOps</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="vault-grid">
+
+          <!-- Featured Project -->
+          <div class="vault-item vault-featured reveal" data-category="ai">
+            <div class="vault-visual">
+              <div class="vault-visual-inner">
+                <img class="vault-visual-img"
+                  src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop"
+                  alt="Neural Commerce Engine">
+                <div class="vault-visual-placeholder">
+                  <span>[ Nöral Ticaret — Canlı Önizleme ]</span>
+                </div>
+              </div>
+              <span class="vault-classification">Öne Çıkan Eser</span>
+            </div>
+            <div class="vault-info">
+              <div class="vault-category">Yapay Zeka / Makine Öğrenimi</div>
+              <h3 class="vault-title">Nöral Ticaret Motoru</h3>
+              <p class="vault-desc">Dönüşüm oranlarını %340 artıran yapay zeka destekli bir e-ticaret öneri sistemi.
+                Özel olarak eğitilmiş transformer modelleri ve gerçek zamanlı kullanıcı davranışı analizi ile
+                oluşturulmuştur. Günlük 2 milyondan fazla etkileşimi işler.</p>
+              <div class="vault-tags">
+                <span class="vault-tag">PyTorch</span>
+                <span class="vault-tag">FastAPI</span>
+                <span class="vault-tag">Redis</span>
+                <span class="vault-tag">React</span>
+                <span class="vault-tag">AWS</span>
+              </div>
+              <div class="vault-meta">
+                <div class="vault-meta-item"><span class="dot"></span> Üretim (Canlı)</div>
+                <div class="vault-meta-item">Günlük 2M+ etkileşim</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="vault-item reveal" data-category="cloud">
+            <div class="vault-visual">
+              <div class="vault-visual-inner">
+                <img class="vault-visual-img"
+                  src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop"
+                  alt="Distributed Mesh">
+                <div class="vault-visual-placeholder">[ Dağınık Ağ ]</div>
+              </div>
+              <span class="vault-classification">Aktif Dağıtım</span>
+            </div>
+            <div class="vault-info">
+              <div class="vault-category">Bulut / Arka Uç</div>
+              <h3 class="vault-title">Dağıtık Ağ Platformu</h3>
+              <p class="vault-desc">%99,99 çalışma süresi ile günde 10 milyondan fazla isteği işleyen mikro hizmet
+                mimarisi. Otomatik ölçekleme özelliklerine sahip olay odaklı (event-driven) ağ.</p>
+              <div class="vault-tags">
+                <span class="vault-tag">Kubernetes</span>
+                <span class="vault-tag">Go</span>
+                <span class="vault-tag">gRPC</span>
+                <span class="vault-tag">Terraform</span>
+              </div>
+              <div class="vault-meta">
+                <div class="vault-meta-item"><span class="dot"></span> Üretim (Canlı)</div>
+                <div class="vault-meta-item">%99.99 Çalışma Süresi</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="vault-item reveal" data-category="mobile">
+            <div class="vault-visual">
+              <div class="vault-visual-inner">
+                <img class="vault-visual-img"
+                  src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop"
+                  alt="Pulse Health">
+                <div class="vault-visual-placeholder">[ Pulse Sağlık ]</div>
+              </div>
+              <span class="vault-classification">Aktif Dağıtım</span>
+            </div>
+            <div class="vault-info">
+              <div class="vault-category">Mobil / Sağlık Teknolojisi</div>
+              <h3 class="vault-title">Pulse Sağlık Takipçisi</h3>
+              <p class="vault-desc">Giyilebilir cihaz entegrasyonu ile gerçek zamanlı sağlık izleme uygulaması.
+                Kişiselleştirilmiş sağlık öngörüleri ve erken anormallik tespiti için uyarlanabilir makine öğrenimi
+                modelleri.</p>
+              <div class="vault-tags">
+                <span class="vault-tag">React Native</span>
+                <span class="vault-tag">HealthKit</span>
+                <span class="vault-tag">TensorFlow Lite</span>
+              </div>
+              <div class="vault-meta">
+                <div class="vault-meta-item"><span class="dot"></span> Üretim (Canlı)</div>
+                <div class="vault-meta-item">50B+ Kullanıcı</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="vault-item reveal" data-category="ai">
+            <div class="vault-visual">
+              <div class="vault-visual-inner">
+                <img class="vault-visual-img"
+                  src="https://images.unsplash.com/photo-1531746790095-e6f8e1f4c0b6?w=600&h=400&fit=crop"
+                  alt="Sentinel AI">
+                <div class="vault-visual-placeholder">[ Sentinel YZ ]</div>
+              </div>
+              <span class="vault-classification">Aktif Dağıtım</span>
+            </div>
+            <div class="vault-info">
+              <div class="vault-category">Sohbet Botu / RAG</div>
+              <h3 class="vault-title">Sentinel Destek YZ</h3>
+              <p class="vault-desc">RAG boru hattı kullanan bağlama duyarlı destek sohbet botu. Destek taleplerinin
+                %85'ini insan müdahalesi olmadan çözer. Çoklu dil, çoklu kanal destekli.</p>
+              <div class="vault-tags">
+                <span class="vault-tag">LangChain</span>
+                <span class="vault-tag">Pinecone</span>
+                <span class="vault-tag">GPT-4</span>
+                <span class="vault-tag">Node.js</span>
+              </div>
+              <div class="vault-meta">
+                <div class="vault-meta-item"><span class="dot"></span> Üretim (Canlı)</div>
+                <div class="vault-meta-item">%85 Otomatik Çözüm</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div class="vault-item reveal" data-category="web">
+            <div class="vault-visual">
+              <div class="vault-visual-inner">
+                <img class="vault-visual-img"
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
+                  alt="DataForge Analytics">
+                <div class="vault-visual-placeholder">[ DataForge ]</div>
+              </div>
+              <span class="vault-classification">Aktif Dağıtım</span>
+            </div>
+            <div class="vault-info">
+              <div class="vault-category">Web Platformu</div>
+              <h3 class="vault-title">DataForge Analitik</h3>
+              <p class="vault-desc">Gerçek zamanlı veri görselleştirmesine sahip kurumsal analitik paneli. Özel grafik
+                motoru, detaylı analiz ve otomatik raporlama.</p>
+              <div class="vault-tags">
+                <span class="vault-tag">Next.js</span>
+                <span class="vault-tag">D3.js</span>
+                <span class="vault-tag">PostgreSQL</span>
+                <span class="vault-tag">WebSocket</span>
+              </div>
+              <div class="vault-meta">
+                <div class="vault-meta-item"><span class="dot"></span> Üretim (Canlı)</div>
+                <div class="vault-meta-item">Kurumsal Düzey</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div class="vault-item reveal" data-category="automation">
+            <div class="vault-visual">
+              <div class="vault-visual-inner">
+                <img class="vault-visual-img"
+                  src="https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=600&h=400&fit=crop"
+                  alt="FlowOps Automation">
+                <div class="vault-visual-placeholder">[ FlowOps ]</div>
+              </div>
+              <span class="vault-classification">Aktif Dağıtım</span>
+            </div>
+            <div class="vault-info">
+              <div class="vault-category">Otomasyon / n8n</div>
+              <h3 class="vault-title">FlowOps Otomasyon Paketi</h3>
+              <p class="vault-desc">n8n kullanan uçtan uca iş otomasyonu. CRM, envanter ve iletişim kanallarını entegre
+                eder. Manuel işlemleri %90 oranında azalttı.</p>
+              <div class="vault-tags">
+                <span class="vault-tag">n8n</span>
+                <span class="vault-tag">Webhooks</span>
+                <span class="vault-tag">REST API</span>
+                <span class="vault-tag">Slack</span>
+              </div>
+              <div class="vault-meta">
+                <div class="vault-meta-item"><span class="dot"></span> Üretim (Canlı)</div>
+                <div class="vault-meta-item">%90 Zaman Tasarrufu</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 7 -->
+          <div class="vault-item reveal" data-category="ai">
+            <div class="vault-visual">
+              <div class="vault-visual-inner">
+                <img class="vault-visual-img"
+                  src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=600&h=400&fit=crop"
+                  alt="VisionGuard">
+                <div class="vault-visual-placeholder">[ VisionGuard ]</div>
+              </div>
+              <span class="vault-classification">Aktif Dağıtım</span>
+            </div>
+            <div class="vault-info">
+              <div class="vault-category">Yapay Zeka / Bilgisayarlı Görü</div>
+              <h3 class="vault-title">VisionGuard Gözetim</h3>
+              <p class="vault-desc">Gerçek zamanlı nesne tespiti ve davranış analizi kullanan akıllı video analitiği
+                platformu. Saniyenin altında uyarı gecikmesiyle 200'den fazla kurumsal konumda konuşlandırıldı.</p>
+              <div class="vault-tags">
+                <span class="vault-tag">YOLOv8</span>
+                <span class="vault-tag">OpenCV</span>
+                <span class="vault-tag">CUDA</span>
+                <span class="vault-tag">Python</span>
+              </div>
+              <div class="vault-meta">
+                <div class="vault-meta-item"><span class="dot"></span> Üretim (Canlı)</div>
+                <div class="vault-meta-item">200+ Konum</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 8 -->
+          <div class="vault-item reveal" data-category="cloud">
+            <div class="vault-visual">
+              <div class="vault-visual-inner">
+                <img class="vault-visual-img"
+                  src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&h=400&fit=crop" alt="CloudVault">
+                <div class="vault-visual-placeholder">[ CloudVault ]</div>
+              </div>
+              <span class="vault-classification">Aktif Dağıtım</span>
+            </div>
+            <div class="vault-info">
+              <div class="vault-category">Bulut Altyapısı</div>
+              <h3 class="vault-title">CloudVault Depolama</h3>
+              <p class="vault-desc">Akıllı katmanlama, uçtan uca şifreleme ve otomatik yük devretme özelliklerine sahip
+                çoklu bulut depolama düzenleme katmanı. AWS, Azure ve GCP'de 500 TB'tan fazlasını yönetir.</p>
+              <div class="vault-tags">
+                <span class="vault-tag">AWS S3</span>
+                <span class="vault-tag">Azure Blob</span>
+                <span class="vault-tag">GCP</span>
+                <span class="vault-tag">Rust</span>
+              </div>
+              <div class="vault-meta">
+                <div class="vault-meta-item"><span class="dot"></span> Üretim (Canlı)</div>
+                <div class="vault-meta-item">500TB+ Yönetilen</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 9 -->
+          <div class="vault-item reveal" data-category="web">
+            <div class="vault-visual">
+              <div class="vault-visual-inner">
+                <img class="vault-visual-img"
+                  src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&h=400&fit=crop"
+                  alt="FinTrack Pro">
+                <div class="vault-visual-placeholder">[ FinTrack Pro ]</div>
+              </div>
+              <span class="vault-classification">Aktif Dağıtım</span>
+            </div>
+            <div class="vault-info">
+              <div class="vault-category">Web / Finans Teknolojisi</div>
+              <h3 class="vault-title">FinTrack Pro</h3>
+              <p class="vault-desc">Gerçek zamanlı portföy yönetimi ve finansal analitik SaaS uygulaması. Algoritmik
+                işlem sinyalleri, risk değerlendirme panoları ve mevzuat uyumluluk takibi özelliklerine sahiptir.</p>
+              <div class="vault-tags">
+                <span class="vault-tag">Vue.js</span>
+                <span class="vault-tag">Python</span>
+                <span class="vault-tag">TimescaleDB</span>
+                <span class="vault-tag">Stripe</span>
+              </div>
+              <div class="vault-meta">
+                <div class="vault-meta-item"><span class="dot"></span> Üretim (Canlı)</div>
+                <div class="vault-meta-item">2 Milyar $+ Takip Edilen</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 10 -->
+          <div class="vault-item reveal" data-category="mobile">
+            <div class="vault-visual">
+              <div class="vault-visual-inner">
+                <img class="vault-visual-img"
+                  src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=600&h=400&fit=crop"
+                  alt="SwiftDelivery">
+                <div class="vault-visual-placeholder">[ SwiftDelivery ]</div>
+              </div>
+              <span class="vault-classification">Aktif Dağıtım</span>
+            </div>
+            <div class="vault-info">
+              <div class="vault-category">Mobil / Lojistik</div>
+              <h3 class="vault-title">SwiftDelivery</h3>
+              <p class="vault-desc">Gerçek zamanlı sürücü takibi, dinamik rota planlama ve öngörülü talep modellemesi
+                ile son kilometre teslimat optimizasyon platformu. Günlük 100 binden fazla teslimata güç verir.</p>
+              <div class="vault-tags">
+                <span class="vault-tag">Flutter</span>
+                <span class="vault-tag">Firebase</span>
+                <span class="vault-tag">Maps API</span>
+                <span class="vault-tag">Node.js</span>
+              </div>
+              <div class="vault-meta">
+                <div class="vault-meta-item"><span class="dot"></span> Üretim (Canlı)</div>
+                <div class="vault-meta-item">Günlük 100B+ Teslimat</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 11 -->
+          <div class="vault-item reveal" data-category="devops">
+            <div class="vault-visual">
+              <div class="vault-visual-inner">
+                <img class="vault-visual-img"
+                  src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&h=400&fit=crop"
+                  alt="PipelineMaster">
+                <div class="vault-visual-placeholder">[ PipelineMaster ]</div>
+              </div>
+              <span class="vault-classification">Aktif Dağıtım</span>
+            </div>
+            <div class="vault-info">
+              <div class="vault-category">DevOps / CI/CD</div>
+              <h3 class="vault-title">PipelineMaster</h3>
+              <p class="vault-desc">Sıfır kesinti deployment'ları, kod olarak altyapı şablonları ve çoklu ortam boru
+                hattı yönetimi ile kurumsal CI/CD orkestrasyon platformu. Günlük 40'tan fazla mikro hizmet dağıtılıyor.
+              </p>
+              <div class="vault-tags">
+                <span class="vault-tag">GitLab CI</span>
+                <span class="vault-tag">ArgoCD</span>
+                <span class="vault-tag">Helm</span>
+                <span class="vault-tag">Docker</span>
+              </div>
+              <div class="vault-meta">
+                <div class="vault-meta-item"><span class="dot"></span> Üretim (Canlı)</div>
+                <div class="vault-meta-item">Günlük 40+ Dağıtım</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 12 -->
+          <div class="vault-item reveal" data-category="devops">
+            <div class="vault-visual">
+              <div class="vault-visual-inner">
+                <img class="vault-visual-img"
+                  src="https://images.unsplash.com/photo-1551808525-51a94da548ce?w=600&h=400&fit=crop" alt="InfraWatch">
+                <div class="vault-visual-placeholder">[ InfraWatch ]</div>
+              </div>
+              <span class="vault-classification">Aktif Dağıtım</span>
+            </div>
+            <div class="vault-info">
+              <div class="vault-category">DevOps / İzleme</div>
+              <h3 class="vault-title">InfraWatch Gözlemlenebilirlik</h3>
+              <p class="vault-desc">Dağıtılmış izleme, günlük toplama ve yapay zeka destekli anormallik tespiti
+                özelliklerine sahip tam kapsamlı gözlemlenebilirlik platformu. Akıllı uyarı ve otomatik iyileştirme ile
+                1000'den fazla hizmeti izler.</p>
+              <div class="vault-tags">
+                <span class="vault-tag">Prometheus</span>
+                <span class="vault-tag">Grafana</span>
+                <span class="vault-tag">Jaeger</span>
+                <span class="vault-tag">ELK Stack</span>
+              </div>
+              <div class="vault-meta">
+                <div class="vault-meta-item"><span class="dot"></span> Üretim (Canlı)</div>
+                <div class="vault-meta-item">1000+ Hizmet</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section section">
+      <div class="container">
+        <div class="section-label" style="justify-content: center;">Yeni Proje</div>
+        <h2 class="reveal"><span class="gradient-text">Sıradaki</span> Sizin Projeniz Mi?</h2>
+        <p class="reveal">Projenizi arşivimize ekleyelim. Gereksinimlerinizi bize iletin.</p>
+        <div class="reveal">
+          <a href="contact.html" class="btn btn-primary magnetic">Projeyi Başlat <span class="btn-icon">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-brand-name">{CW<span>.</span>}</div>
+            <p class="footer-description">Elit yazılım çözümleri üretiyoruz. Endüstrileri dönüştüren teknolojiler inşa
+              ediyoruz.</p>
+          </div>
+          <div>
+            <h4 class="footer-heading">Navigasyon</h4>
+            <ul class="footer-link-list">
+              <li><a href="../index.html" class="footer-link">Ana Sayfa</a></li>
+              <li><a href="services.html" class="footer-link">Hizmetler</a></li>
+              <li><a href="projects.html" class="footer-link">Projeler</a></li>
+              <li><a href="about.html" class="footer-link">Hakkımızda</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-heading">Modüller</h4>
+            <ul class="footer-link-list">
+              <li><a href="tech.html" class="footer-link">Teknolojiler</a></li>
+              <li><a href="process.html" class="footer-link">Süreçlerimiz</a></li>
+              <li><a href="contact.html" class="footer-link">İletişim</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-heading">Bağlantılar</h4>
+            <ul class="footer-link-list">
+              <li><a href="#" class="footer-link">GitHub</a></li>
+              <li><a href="#" class="footer-link">LinkedIn</a></li>
+              <li><a href="#" class="footer-link">Twitter</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 CodeWaft. Tüm hakları saklıdır.</span>
+          <div class="footer-status"><span class="status-dot"></span> Tüm Sistemler Çalışır Durumda</div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script type="module" src="../js-files/main.js"></script>
+
+  <!-- Inline fallback: filtering + reveal (works without HTTP server / ES modules) -->
+  <script>
+    (function () {
+      // Wait for DOM
+      function initFallback() {
+        // === Reveal fallback (in case ES module doesn't load) ===
+        var reveals = document.querySelectorAll('.reveal');
+        if (reveals.length > 0) {
+          if ('IntersectionObserver' in window) {
+            var obs = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('revealed');
+                  obs.unobserve(entry.target);
+                }
+              });
+            }, { threshold: 0.1 });
+            reveals.forEach(function (el) { obs.observe(el); });
+          } else {
+            reveals.forEach(function (el) { el.classList.add('revealed'); });
+          }
+        }
+
+
+
+        // === Vault filter fallback ===
+        var filterBtns = document.querySelectorAll('.vault-filter');
+        var vaultItems = document.querySelectorAll('.vault-item');
+
+        if (filterBtns.length > 0 && vaultItems.length > 0) {
+          filterBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              // Update active button
+              filterBtns.forEach(function (b) { b.classList.remove('active'); });
+              btn.classList.add('active');
+
+              var filter = btn.getAttribute('data-filter');
+
+              vaultItems.forEach(function (item) {
+                var category = item.getAttribute('data-category');
+                if (filter === 'all' || category === filter) {
+                  item.style.display = '';
+                  item.style.opacity = '0';
+                  item.style.transform = 'translateY(20px)';
+                  // Staggered reveal
+                  setTimeout(function () {
+                    item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                  }, 50);
+                } else {
+                  item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                  item.style.opacity = '0';
+                  item.style.transform = 'translateY(20px)';
+                  setTimeout(function () { item.style.display = 'none'; }, 300);
+                }
+              });
+            });
+          });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initFallback);
+      } else {
+        initFallback();
+      }
+    })();
+  </script>
+
+</body>
+
+</html>

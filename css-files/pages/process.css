@@ -1,0 +1,211 @@
+/* ============================================
+   CODEWAFT — Process Page
+   Assembly Line / Pipeline Visualization
+   ============================================ */
+
+.process-intro {
+  padding: var(--space-4xl) 0;
+  text-align: center;
+}
+.process-intro p {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* --- Pipeline Visualization --- */
+.pipeline-section {
+  padding: var(--space-4xl) 0;
+  position: relative;
+}
+
+/* Pipeline connector line */
+.pipeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--color-border);
+  transform: translateX(-50%);
+}
+.pipeline-line-fill {
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(to bottom, var(--color-accent), var(--color-secondary));
+  border-radius: var(--radius-pill);
+  transition: height 0.1s linear;
+  box-shadow: 0 0 10px rgba(var(--color-accent-rgb), 0.4);
+}
+
+/* Pipeline Steps */
+.pipeline-steps {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5xl);
+}
+
+.pipeline-step {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+.pipeline-step:nth-child(even) .pipeline-step-content {
+  order: 3;
+  text-align: left;
+}
+.pipeline-step:nth-child(even) .pipeline-step-visual {
+  order: 1;
+}
+
+/* Step Node (center) */
+.pipeline-node {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-border);
+  background: var(--color-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-muted);
+  transition: all 0.5s var(--ease-out-expo);
+  position: relative;
+  z-index: 2;
+}
+.pipeline-step.active .pipeline-node {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.3);
+  background: rgba(var(--color-accent-rgb), 0.05);
+}
+.pipeline-node-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.3);
+  opacity: 0;
+  animation: pulse-ring 2s ease-out infinite;
+}
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Step Content */
+.pipeline-step-content {
+  text-align: right;
+}
+.pipeline-step-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+.pipeline-step-title {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-primary);
+}
+.pipeline-step-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* Step Visual */
+.pipeline-step-visual {
+  padding: var(--space-xl);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.6);
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+}
+.pipeline-step.active .pipeline-step-visual {
+  border-color: rgba(var(--color-accent-rgb), 0.2);
+  box-shadow: 0 0 30px rgba(var(--color-accent-rgb), 0.05);
+}
+.pipeline-visual-content {
+  text-align: center;
+}
+.pipeline-visual-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+}
+.pipeline-visual-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+}
+
+/* --- Methodology Section --- */
+.methodology-section {
+  padding: var(--space-5xl) 0;
+}
+.methodology-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+.methodology-card {
+  padding: var(--space-2xl);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+.methodology-card:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.3);
+  transform: translateY(-2px);
+}
+.methodology-icon {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-lg);
+}
+.methodology-title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-sm);
+}
+.methodology-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* --- Timeline variant for mobile --- */
+@media (max-width: 1024px) {
+  .pipeline-step {
+    grid-template-columns: auto 1fr;
+    gap: var(--space-lg);
+  }
+  .pipeline-step-content {
+    text-align: left !important;
+    order: 2 !important;
+  }
+  .pipeline-step-visual {
+    display: none;
+  }
+  .pipeline-line {
+    left: 30px;
+  }
+}
+@media (max-width: 768px) {
+  .methodology-grid {
+    grid-template-columns: 1fr;
+  }
+}

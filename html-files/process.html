@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CodeWaft Process — Our assembly line pipeline from idea to deployment.">
+  <title>Process Pipeline — CodeWaft</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="../css-files/global.css">
+  <link rel="stylesheet" href="../css-files/layout.css">
+  <link rel="stylesheet" href="../css-files/animations.css">
+  <link rel="stylesheet" href="../css-files/pages/process.css">
+</head>
+
+<body>
+
+
+  <div class="noise-overlay"></div>
+  <div class="grid-bg"></div>
+  <div class="scroll-progress"></div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo"><span class="logo-bracket">{</span>CW<span class="logo-dot">.</span><span
+          class="logo-bracket">}</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html" class="nav-link">Ana Sayfa</a></li>
+        <li><a href="about.html" class="nav-link">Hakkımızda</a></li>
+        <li><a href="services.html" class="nav-link">Hizmetler</a></li>
+        <li><a href="process.html" class="nav-link active">Süreçlerimiz</a></li>
+        <li><a href="projects.html" class="nav-link">Projeler</a></li>
+      </ul>
+      <a href="contact.html" class="nav-cta magnetic">Bize Ulaşın →</a>
+      <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav-mobile">
+    <a href="../index.html" class="nav-link">Ana Sayfa</a>
+    <a href="about.html" class="nav-link">Hakkımızda</a>
+    <a href="services.html" class="nav-link">Hizmetler</a>
+    <a href="process.html" class="nav-link">Süreçlerimiz</a>
+    <a href="projects.html" class="nav-link">Projeler</a>
+    <a href="tech.html" class="nav-link">Teknolojiler</a>
+    <a href="contact.html" class="nav-link">İletişim</a>
+  </div>
+
+  <div class="page-wrapper">
+
+    <header class="page-header">
+      <div class="container">
+        <div class="page-header-label">Kontrol Odası</div>
+        <h1>Süreç <span class="gradient-text">Boru Hattımız</span></h1>
+        <p>Otomatik mühendislik boru hattımız — ilk konseptten üretim dağıtımına kadar. Her adım hassasiyet ve hız için
+          optimize edilmiştir.</p>
+      </div>
+    </header>
+
+    <!-- Process Intro -->
+    <section class="process-intro">
+      <div class="container">
+        <p class="reveal" style="max-width: 700px; font-size: var(--text-lg); line-height: 1.8;">Süreçlerimiz bir
+          kontrol
+          listesi değildir — o <span class="gradient-text">mühendislik ürünü bir boru hattıdır</span> (pipeline).
+          Otomatik bir montaj hattı gibi, her aşama bir sonrakine kusursuz bir şekilde entegre olur ve hassasiyetle
+          minimum israfla çözümler üretir.</p>
+      </div>
+    </section>
+
+    <!-- Pipeline -->
+    <section class="pipeline-section">
+      <div class="container">
+        <div class="pipeline-line">
+          <div class="pipeline-line-fill"></div>
+        </div>
+
+        <div class="pipeline-steps">
+
+          <!-- Step 1: Discovery -->
+          <div class="pipeline-step">
+            <div class="pipeline-step-content reveal">
+              <div class="pipeline-step-label">Aşama 01</div>
+              <h3 class="pipeline-step-title">Keşif & Analiz</h3>
+              <p class="pipeline-step-desc">Gereksinimlerinizi sistematik bir hassasiyetle inceliyoruz. Her varsayım
+                doğrulanıyor, her kısıtlama haritalanıyor. Gerçek manzarayı tamamen anlamadan inşa etmeye başlamıyoruz.
+              </p>
+            </div>
+            <div class="pipeline-node">
+              01
+              <div class="pipeline-node-pulse"></div>
+            </div>
+            <div class="pipeline-step-visual reveal-scale">
+              <div class="pipeline-visual-content">
+                <div class="pipeline-visual-icon">🔍</div>
+                <div class="pipeline-visual-label">Araştır & Haritalandır</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Architecture -->
+          <div class="pipeline-step">
+            <div class="pipeline-step-content reveal">
+              <div class="pipeline-step-label">Aşama 02</div>
+              <h3 class="pipeline-step-title">Mimari Tasarım</h3>
+              <p class="pipeline-step-desc">Sistem planları, veri akış diyagramları, teknoloji seçimi. İlk günden
+                itibaren ölçeklenebilirlik, güvenilirlik ve performansı garanti eden temeli belirliyoruz.</p>
+            </div>
+            <div class="pipeline-node">
+              02
+              <div class="pipeline-node-pulse"></div>
+            </div>
+            <div class="pipeline-step-visual reveal-scale">
+              <div class="pipeline-visual-content">
+                <div class="pipeline-visual-icon">📐</div>
+                <div class="pipeline-visual-label">Tasarım & Planlama</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Build -->
+          <div class="pipeline-step">
+            <div class="pipeline-step-content reveal">
+              <div class="pipeline-step-label">Aşama 03</div>
+              <h3 class="pipeline-step-title">Mühendislik Sprinti</h3>
+              <p class="pipeline-step-desc">Günlük ilerleme takibi ile hızlı, odaklanmış geliştirme sprintleri. İlk
+                günden itibaren temiz kod, modüler mimari ve sürekli entegrasyon.</p>
+            </div>
+            <div class="pipeline-node">
+              03
+              <div class="pipeline-node-pulse"></div>
+            </div>
+            <div class="pipeline-step-visual reveal-scale">
+              <div class="pipeline-visual-content">
+                <div class="pipeline-visual-icon">⚡</div>
+                <div class="pipeline-visual-label">Kodla & İnşa Et</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: AI/Train -->
+          <div class="pipeline-step">
+            <div class="pipeline-step-content reveal">
+              <div class="pipeline-step-label">Aşama 04</div>
+              <h3 class="pipeline-step-title">YZ Eğitimi & İnce Ayar</h3>
+              <p class="pipeline-step-desc">Yapay zeka destekli projeler için: model eğitimi, ince ayar ve performans
+                optimizasyonu. Kesinlik, üretim gereksinimlerini karşılayana kadar yineliyoruz.</p>
+            </div>
+            <div class="pipeline-node">
+              04
+              <div class="pipeline-node-pulse"></div>
+            </div>
+            <div class="pipeline-step-visual reveal-scale">
+              <div class="pipeline-visual-content">
+                <div class="pipeline-visual-icon">🧠</div>
+                <div class="pipeline-visual-label">Eğit & Optimize Et</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5: Test -->
+          <div class="pipeline-step">
+            <div class="pipeline-step-content reveal">
+              <div class="pipeline-step-label">Aşama 05</div>
+              <h3 class="pipeline-step-title">Test Etme & QA (Kalite Güvence)</h3>
+              <p class="pipeline-step-desc">Otomatik test paketleri, performans kriterleri, güvenlik denetimleri ve uç
+                durum analizleri. Hiçbir şey tüm kapıları geçmeden teslim edilmez.</p>
+            </div>
+            <div class="pipeline-node">
+              05
+              <div class="pipeline-node-pulse"></div>
+            </div>
+            <div class="pipeline-step-visual reveal-scale">
+              <div class="pipeline-visual-content">
+                <div class="pipeline-visual-icon">🧪</div>
+                <div class="pipeline-visual-label">Test Et & Doğrula</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 6: Deploy -->
+          <div class="pipeline-step">
+            <div class="pipeline-step-content reveal">
+              <div class="pipeline-step-label">Aşama 06</div>
+              <h3 class="pipeline-step-title">Dağıtım & Lansman</h3>
+              <p class="pipeline-step-desc">Otomatik geri almalarla sıfır kesinti deployment'ı. Gözlem, uyarı ve izleme
+                özellikleri baştan yapılandırılır. Sisteminiz sahaya güvenle çıkar.</p>
+            </div>
+            <div class="pipeline-node">
+              06
+              <div class="pipeline-node-pulse"></div>
+            </div>
+            <div class="pipeline-step-visual reveal-scale">
+              <div class="pipeline-visual-content">
+                <div class="pipeline-visual-icon">🚀</div>
+                <div class="pipeline-visual-label">Dağıt & İzle</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 7: Optimize -->
+          <div class="pipeline-step">
+            <div class="pipeline-step-content reveal">
+              <div class="pipeline-step-label">Aşama 07</div>
+              <h3 class="pipeline-step-title">Optimizasyon & Büyüme</h3>
+              <p class="pipeline-step-desc">Gerçek verilere dayalı lansman sonrası optimizasyon. Performans ayarları,
+                özellik iterasyonları ve ölçekleme — boru hattı asla durmaz.</p>
+            </div>
+            <div class="pipeline-node">
+              07
+              <div class="pipeline-node-pulse"></div>
+            </div>
+            <div class="pipeline-step-visual reveal-scale">
+              <div class="pipeline-visual-content">
+                <div class="pipeline-visual-icon">📈</div>
+                <div class="pipeline-visual-label">Ölçeklendir & Geliştir</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Methodology -->
+    <section class="methodology-section">
+      <div class="container">
+        <div class="section-label">Metodoloji</div>
+        <h2 class="reveal">Mühendislik <span class="gradient-text">Prensiplerimiz</span></h2>
+
+        <div class="methodology-grid stagger-children">
+          <div class="methodology-card">
+            <div class="methodology-icon">🔄</div>
+            <h3 class="methodology-title">Çevik (Agile) Sprintler</h3>
+            <p class="methodology-desc">Net teslimatlara sahip iki haftalık sprintler. Günlük standup toplantıları,
+              sprint incelemeleri ve sürekli geri bildirim döngüleri ile hedeflerinizle daima uyumlu kalıyoruz.</p>
+          </div>
+          <div class="methodology-card">
+            <div class="methodology-icon">📊</div>
+            <h3 class="methodology-title">Veri Odaklı Kararlar</h3>
+            <p class="methodology-desc">Her mimari tercih, kıyaslamalar ve verilerle desteklenir. Özel kullanım
+              durumunuz için en iyi performansı gösteren çözümü ölçer, karşılaştırır ve seçeriz.</p>
+          </div>
+          <div class="methodology-card">
+            <div class="methodology-icon">🛡️</div>
+            <h3 class="methodology-title">Önce Güvenlik Tasarımı</h3>
+            <p class="methodology-desc">Güvenlik sonradan akla gelen bir şey değildir — inşa ettiğimiz ilk katmandır.
+              Şifreleme, kimlik doğrulama ve yetkilendirme, tasarladığımız her sistemin temelidir.</p>
+          </div>
+          <div class="methodology-card">
+            <div class="methodology-icon">♻️</div>
+            <h3 class="methodology-title">Temiz Kod Standartları</h3>
+            <p class="methodology-desc">SOLID prensipleri, kapsamlı belgeler ve her kod birleştirme talebinde (PR) takım
+              arkadaşı değerlendirmesi (code review). Kod tabanımız tasarım itibarıyla bakımı kolay, okunabilir ve
+              ölçeklenebilirdir.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section section">
+      <div class="container">
+        <div class="section-label" style="justify-content: center;">Boru Hattınızı Başlatın</div>
+        <h2 class="reveal"><span class="gradient-text">Aktive Etmeye</span> Hazır Mısınız?</h2>
+        <p class="reveal">Projeniz boru hattımıza giriyor. Mühendisliği biz hallediyoruz — siz ise nasıl hayata
+          geçtiğini izliyorsunuz.</p>
+        <div class="reveal">
+          <a href="contact.html" class="btn btn-primary magnetic">İnşa Etmeye Başla <span class="btn-icon">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-brand-name">{CW<span>.</span>}</div>
+            <p class="footer-description">Elit yazılım çözümleri üretiyoruz. Endüstrileri dönüştüren teknolojiler inşa
+              ediyoruz.</p>
+          </div>
+          <div>
+            <h4 class="footer-heading">Navigasyon</h4>
+            <ul class="footer-link-list">
+              <li><a href="../index.html" class="footer-link">Ana Sayfa</a></li>
+              <li><a href="services.html" class="footer-link">Hizmetler</a></li>
+              <li><a href="projects.html" class="footer-link">Projeler</a></li>
+              <li><a href="about.html" class="footer-link">Hakkımızda</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-heading">Modüller</h4>
+            <ul class="footer-link-list">
+              <li><a href="tech.html" class="footer-link">Teknolojiler</a></li>
+              <li><a href="process.html" class="footer-link">Süreçlerimiz</a></li>
+              <li><a href="contact.html" class="footer-link">İletişim</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-heading">Bağlantılar</h4>
+            <ul class="footer-link-list">
+              <li><a href="#" class="footer-link">GitHub</a></li>
+              <li><a href="#" class="footer-link">LinkedIn</a></li>
+              <li><a href="#" class="footer-link">Twitter</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 CodeWaft. Tüm hakları saklıdır.</span>
+          <div class="footer-status"><span class="status-dot"></span> Tüm Sistemler Çalışır Durumda</div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script type="module" src="../js-files/main.js"></script>
+
+  <!-- Pipeline scroll progress -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const pipelineFill = document.querySelector('.pipeline-line-fill');
+      const pipelineSection = document.querySelector('.pipeline-section');
+      if (!pipelineFill || !pipelineSection) return;
+
+      window.addEventListener('scroll', () => {
+        const rect = pipelineSection.getBoundingClientRect();
+        const sectionTop = rect.top;
+        const sectionHeight = rect.height;
+        const windowHeight = window.innerHeight;
+
+        let progress = 0;
+        if (sectionTop < windowHeight) {
+          progress = Math.min(Math.max((windowHeight - sectionTop) / (sectionHeight + windowHeight) * 100, 0), 100);
+        }
+        pipelineFill.style.height = progress + '%';
+      }, { passive: true });
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CodeWaft Contact — Transmit your project request to our engineering team.">
+  <title>Contact — CodeWaft</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="../css-files/global.css">
+  <link rel="stylesheet" href="../css-files/layout.css">
+  <link rel="stylesheet" href="../css-files/animations.css">
+  <link rel="stylesheet" href="../css-files/pages/contact.css">
+</head>
+
+<body>
+
+
+  <div class="noise-overlay"></div>
+  <div class="grid-bg"></div>
+  <div class="scroll-progress"></div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo"><span class="logo-bracket">{</span>CW<span class="logo-dot">.</span><span
+          class="logo-bracket">}</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html" class="nav-link">Ana Sayfa</a></li>
+        <li><a href="about.html" class="nav-link">Hakkımızda</a></li>
+        <li><a href="services.html" class="nav-link">Hizmetler</a></li>
+        <li><a href="process.html" class="nav-link">Süreçlerimiz</a></li>
+        <li><a href="projects.html" class="nav-link">Projeler</a></li>
+      </ul>
+      <a href="contact.html" class="nav-cta magnetic">Bize Ulaşın →</a>
+      <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav-mobile">
+    <a href="../index.html" class="nav-link">Ana Sayfa</a>
+    <a href="about.html" class="nav-link">Hakkımızda</a>
+    <a href="services.html" class="nav-link">Hizmetler</a>
+    <a href="process.html" class="nav-link">Süreçlerimiz</a>
+    <a href="projects.html" class="nav-link">Projeler</a>
+    <a href="tech.html" class="nav-link">Teknolojiler</a>
+    <a href="contact.html" class="nav-link active">İletişim</a>
+  </div>
+
+  <div class="page-wrapper">
+
+    <header class="page-header">
+      <div class="container">
+        <div class="page-header-label">İletişim Terminali</div>
+        <h1>Bir <span class="gradient-text">Kanal</span> Açın</h1>
+        <p>Proje koordinatlarınızı gönderin. Ekibimiz mühendislik sürecine başlamak için 24 saat içinde yanıt
+          verecektir.</p>
+      </div>
+    </header>
+
+    <!-- Contact Grid -->
+    <section class="contact-section section">
+      <div class="container">
+        <div class="contact-grid">
+
+          <!-- Terminal Console (Form) -->
+          <div class="terminal-console reveal">
+            <div class="terminal-header">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+              <span class="terminal-title">iletişim.başlat</span>
+            </div>
+            <div class="terminal-body">
+              <form id="contactForm" class="contact-form" autocomplete="off">
+                <div class="form-group">
+                  <label class="form-label" for="contactName">// Kimlik</label>
+                  <input type="text" id="contactName" name="name" class="form-input" placeholder="Adınız" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="contactEmail">// Frekans</label>
+                  <input type="email" id="contactEmail" name="email" class="form-input"
+                    placeholder="eposta@adresiniz.com" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="contactCompany">// Organizasyon</label>
+                  <input type="text" id="contactCompany" name="company" class="form-input"
+                    placeholder="Şirket adı (isteğe bağlı)">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="contactService">// Hizmet Modülü</label>
+                  <div class="form-select-wrapper">
+                    <select id="contactService" name="service" class="form-select" required>
+                      <option value="" disabled selected>Bir hizmet seçin…</option>
+                      <option value="backend">Arka Uç (Backend) Geliştirme</option>
+                      <option value="frontend">Ön Yüz (Frontend) Geliştirme</option>
+                      <option value="mobile">Mobil Geliştirme</option>
+                      <option value="ai-ml">Yapay Zeka / Makine Öğrenimi / Derin Öğrenme</option>
+                      <option value="chatbot">Sohbet Botu / RAG Sistemleri</option>
+                      <option value="automation">n8n Otomasyonu</option>
+                      <option value="cloud">Bulut Altyapısı</option>
+                      <option value="fullstack">Tam Kapsamlı (Full-Stack) Çözüm</option>
+                      <option value="other">Diğer</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="contactBudget">// Bütçe Aralığı</label>
+                  <div class="form-select-wrapper">
+                    <select id="contactBudget" name="budget" class="form-select">
+                      <option value="" disabled selected>Aralık seçin…</option>
+                      <option value="5k-15k">$5K – $15K</option>
+                      <option value="15k-50k">$15K – $50K</option>
+                      <option value="50k-100k">$50K – $100K</option>
+                      <option value="100k+">$100K+</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="contactMessage">// Görev Yükü (İletişim Mesajı)</label>
+                  <textarea id="contactMessage" name="message" class="form-textarea"
+                    placeholder="Proje kapsamınızı, hedeflerinizi, zaman çizelgenizi açıklayın…" rows="6"
+                    required></textarea>
+                </div>
+                <button type="submit" class="transmit-btn magnetic">
+                  <span class="transmit-text">TALEBI ILET</span>
+                  <span class="transmit-icon">⟶</span>
+                  <span class="transmit-ripple"></span>
+                </button>
+              </form>
+
+              <!-- Success State -->
+              <div class="form-success" style="display: none;">
+                <div class="success-icon">✓</div>
+                <h3 class="success-title">İletim Alındı</h3>
+                <p class="success-desc">Talebiniz sistemimize kaydedildi. 24 saat içinde yanıt bekleyebilirsiniz.</p>
+                <div class="success-code">REF: CW-<span id="successRef">000000</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Info -->
+          <div class="contact-sidebar">
+
+            <div class="contact-info-card reveal">
+              <div class="contact-info-icon">📡</div>
+              <h3 class="contact-info-title">Doğrudan Kanal</h3>
+              <a href="mailto:hello@codewaft.com" class="contact-info-value">hello@codewaft.com</a>
+            </div>
+
+            <div class="contact-info-card reveal">
+              <div class="contact-info-icon">🌐</div>
+              <h3 class="contact-info-title">Merkez Konum</h3>
+              <p class="contact-info-value">Uzaktan Çalışma Odaklı<br>Küresel Erişim</p>
+            </div>
+
+            <div class="contact-info-card reveal">
+              <div class="contact-info-icon">⏱️</div>
+              <h3 class="contact-info-title">Yanıt Süresi</h3>
+              <p class="contact-info-value">&lt; 24 saat</p>
+            </div>
+
+            <!-- Status Console -->
+            <div class="status-console reveal">
+              <div class="status-console-header">Sistem Durumu</div>
+              <div class="status-row">
+                <span class="status-label">API Ağ Geçidi</span>
+                <span class="status-value online"><span class="status-dot-small"></span>Çevrimiçi</span>
+              </div>
+              <div class="status-row">
+                <span class="status-label">Geliştirme Boru Hattı</span>
+                <span class="status-value online"><span class="status-dot-small"></span>Aktif</span>
+              </div>
+              <div class="status-row">
+                <span class="status-label">Yanıt Kuyruğu</span>
+                <span class="status-value online"><span class="status-dot-small"></span>Ort. 3 dk</span>
+              </div>
+              <div class="status-row">
+                <span class="status-label">Kapasite</span>
+                <span class="status-value online"><span class="status-dot-small"></span>Müsait</span>
+              </div>
+            </div>
+
+            <!-- Signal Animation -->
+            <div class="signal-container reveal-scale">
+              <div class="signal-ring signal-ring-1"></div>
+              <div class="signal-ring signal-ring-2"></div>
+              <div class="signal-ring signal-ring-3"></div>
+              <div class="signal-center"></div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section section">
+      <div class="container">
+        <div class="section-label" style="justify-content: center;">Konuşmayı Mı Tercih Edersiniz?</div>
+        <h2 class="reveal">Bir Görüşme <span class="gradient-text">Planlayın</span></h2>
+        <p class="reveal">Proje kapsamınızı ve gereksinimlerinizi tartışmak için ücretsiz 30 dakikalık bir keşif
+          görüşmesi ayarlayın.</p>
+        <div class="reveal">
+          <a href="#" class="btn btn-primary magnetic">Keşif Görüşmesi Ayarla <span class="btn-icon">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-brand-name">{CW<span>.</span>}</div>
+            <p class="footer-description">Elit yazılım çözümleri üretiyoruz. Endüstrileri dönüştüren teknolojiler inşa
+              ediyoruz.</p>
+          </div>
+          <div>
+            <h4 class="footer-heading">Navigasyon</h4>
+            <ul class="footer-link-list">
+              <li><a href="../index.html" class="footer-link">Ana Sayfa</a></li>
+              <li><a href="services.html" class="footer-link">Hizmetler</a></li>
+              <li><a href="projects.html" class="footer-link">Projeler</a></li>
+              <li><a href="about.html" class="footer-link">Hakkımızda</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-heading">Modüller</h4>
+            <ul class="footer-link-list">
+              <li><a href="tech.html" class="footer-link">Teknolojiler</a></li>
+              <li><a href="process.html" class="footer-link">Süreçlerimiz</a></li>
+              <li><a href="contact.html" class="footer-link">İletişim</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-heading">Bağlantılar</h4>
+            <ul class="footer-link-list">
+              <li><a href="#" class="footer-link">GitHub</a></li>
+              <li><a href="#" class="footer-link">LinkedIn</a></li>
+              <li><a href="#" class="footer-link">Twitter</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 CodeWaft. Tüm hakları saklıdır.</span>
+          <div class="footer-status"><span class="status-dot"></span> Tüm Sistemler Çalışır Durumda</div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script type="module" src="../js-files/main.js"></script>
+
+</body>
+
+</html>

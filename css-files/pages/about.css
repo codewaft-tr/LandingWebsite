@@ -1,0 +1,355 @@
+/* ============================================
+   CODEWAFT — About Page (Core Team Hub)
+   Holographic Pods
+   ============================================ */
+
+/* Unified About Section */
+.about-unified {
+  padding: var(--space-4xl) 0 var(--space-2xl);
+}
+
+.about-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4xl);
+  align-items: center;
+}
+.about-intro-text h2 {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-lg);
+}
+.about-intro-text p {
+  margin-bottom: var(--space-lg);
+  line-height: 1.8;
+}
+.about-values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+.about-value {
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+.about-value:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.3);
+  background: rgba(var(--color-accent-rgb), 0.03);
+}
+.about-value-icon {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-sm);
+}
+.about-value-title {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: 0.25rem;
+}
+.about-value-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* Stats Bar */
+.about-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  padding: var(--space-2xl) var(--space-xl);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.about-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.about-stat-number {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+.about-stat-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+/* --- Team Pods --- */
+.team-section {
+  padding: var(--space-5xl) 0;
+}
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+
+/* New about page team cards */
+.team-grid-about {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.team-card-about {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl) var(--space-xl);
+  text-align: center;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+.team-card-about:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(var(--color-accent-rgb), 0.3);
+}
+.team-avatar-photo-about {
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radius-full);
+  margin: 0 auto var(--space-lg);
+  overflow: hidden;
+  background: #E2E8F0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+.team-avatar-photo-about img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(10%);
+  transition: filter var(--transition-base), transform var(--transition-base);
+}
+.team-card-about:hover .team-avatar-photo-about img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+.team-card-name {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: 0.25rem;
+}
+.team-card-role {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+}
+
+/* Legacy pod styles (kept for compatibility) */
+.team-pod {
+  position: relative;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.6);
+  transition: all 0.5s var(--ease-out-expo);
+  text-align: center;
+  padding: var(--space-3xl) var(--space-xl) var(--space-xl);
+}
+.team-pod::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  transition: all 0.5s;
+}
+.team-pod:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08), var(--shadow-glow);
+}
+.team-pod:hover::before {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.12) 0%, transparent 70%);
+}
+
+/* Pod Avatar */
+.pod-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-border-light);
+  margin: 0 auto var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--color-accent-rgb), 0.05);
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-accent);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+.pod-avatar::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: var(--radius-full);
+  background: conic-gradient(
+    from 0deg,
+    var(--color-accent),
+    transparent 60%,
+    var(--color-secondary),
+    transparent 90%,
+    var(--color-accent)
+  );
+  opacity: 0;
+  transition: opacity 0.5s;
+  z-index: -1;
+  animation: rotate-slow 4s linear infinite;
+}
+.team-pod:hover .pod-avatar {
+  border-color: var(--color-accent);
+}
+.team-pod:hover .pod-avatar::after {
+  opacity: 1;
+}
+
+/* Pod Info */
+.pod-name {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: 0.25rem;
+}
+.pod-role {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-lg);
+}
+
+/* Pod Status */
+.pod-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: var(--space-md) 0;
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-md);
+}
+.pod-status-indicator {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--color-success);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+.pod-status-text {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+/* Pod Skills */
+.pod-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin-top: var(--space-md);
+}
+.pod-skill {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+}
+.team-pod:hover .pod-skill {
+  border-color: rgba(var(--color-accent-rgb), 0.2);
+  color: var(--color-text-secondary);
+}
+
+/* --- Culture Section --- */
+.culture-section {
+  padding: var(--space-5xl) 0;
+}
+.culture-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+.culture-card {
+  padding: var(--space-2xl);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+.culture-card:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.3);
+  transform: translateY(-2px);
+}
+.culture-icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-lg);
+}
+.culture-title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-sm);
+}
+.culture-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .about-intro-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .culture-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-values {
+    grid-template-columns: 1fr;
+  }
+  .about-stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 500px) {
+  .team-grid-about {
+    grid-template-columns: 1fr;
+    max-width: 350px;
+  }
+}
