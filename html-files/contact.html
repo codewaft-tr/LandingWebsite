@@ -113,10 +113,10 @@
                   <div class="form-select-wrapper">
                     <select id="contactBudget" name="budget" class="form-select">
                       <option value="" disabled selected>Aralık seçin…</option>
-                      <option value="5k-15k">$5K – $15K</option>
-                      <option value="15k-50k">$15K – $50K</option>
-                      <option value="50k-100k">$50K – $100K</option>
-                      <option value="100k+">$100K+</option>
+                      <option value="5k-15k">0 – 5000TL</option>
+                      <option value="15k-50k">5000TL – 30000TL</option>
+                      <option value="50k-100k">30000TL – 100000TL</option>
+                      <option value="100k+">100000TL+</option>
                     </select>
                   </div>
                 </div>
@@ -134,10 +134,21 @@
               </form>
 
               <!-- Success State -->
-              <div class="form-success" style="display: none;">
-                <div class="success-icon">✓</div>
-                <h3 class="success-title">İletim Alındı</h3>
-                <p class="success-desc">Talebiniz sistemimize kaydedildi. 24 saat içinde yanıt bekleyebilirsiniz.</p>
+              <div class="form-success">
+                <div class="form-success-console-header"
+                  style="text-align: left; margin-bottom: 20px; font-size: 11px; color: #6366f1; border-bottom: 1px solid #333; padding-bottom: 5px;">
+                  <span>> sistem.yanıt_ver()</span>
+                </div>
+                <div class="form-success-icon">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+                <h3 class="form-success-title">İletim Alındı</h3>
+                <p class="form-success-desc">Talebiniz sistemimize güvenli bir şekilde kaydedildi. Mühendislerimiz görev
+                  yükünüzü analiz ediyor. 24 saat içinde dönüş bekleyebilirsiniz.</p>
                 <div class="success-code">REF: CW-<span id="successRef">000000</span></div>
               </div>
             </div>
@@ -149,7 +160,7 @@
             <div class="contact-info-card reveal">
               <div class="contact-info-icon">📡</div>
               <h3 class="contact-info-title">Doğrudan Kanal</h3>
-              <a href="mailto:hello@codewaft.com" class="contact-info-value">hello@codewaft.com</a>
+              <a href="mailto:info@codewaft.com" class="contact-info-value">info@codewaft.com</a>
             </div>
 
             <div class="contact-info-card reveal">
@@ -254,11 +265,115 @@
     </footer>
 
   </div>
+  <div class="toast-container" id="toastContainer"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script type="module" src="../js-files/main.js"></script>
 
+  <script>
+    // Toast Notification System
+    function showToast(type, title, message) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+
+      let iconSvg = '';
+      if (type === 'success') {
+        iconSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>';
+      } else if (type === 'error') {
+        iconSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>';
+      } else {
+        iconSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>';
+      }
+
+      toast.innerHTML = `
+        <div class="toast-icon ${type}">${iconSvg}</div>
+        <div class="toast-content">
+          <div class="toast-title">${title}</div>
+          <div class="toast-message">${message}</div>
+        </div>
+        <button class="toast-close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      `;
+
+      container.appendChild(toast);
+
+      // Setup close button
+      toast.querySelector('.toast-close').addEventListener('click', () => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 400);
+      });
+
+      // Show toast
+      setTimeout(() => toast.classList.add('show'), 100);
+
+      // Auto dismiss after 5 seconds
+      setTimeout(() => {
+        if (toast.parentElement) {
+          toast.classList.remove('show');
+          setTimeout(() => toast.remove(), 400);
+        }
+      }, 5000);
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const submitBtn = form.querySelector('.transmit-btn');
+      const submitText = submitBtn.querySelector('.transmit-text');
+      const successState = document.querySelector('.form-success');
+      const successRef = document.getElementById('successRef');
+
+      // Get form data
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      // Update UI to "Sending" state
+      const originalText = submitText.textContent;
+      submitText.textContent = 'ILETILIYOR...';
+      submitBtn.style.opacity = '0.7';
+      submitBtn.disabled = true;
+
+      // Show processing toast
+      showToast('info', 'SİSTEM İŞLEMDE', 'Veri paketleri şifreleniyor ve gönderiliyor...');
+
+      try {
+        // Post to backend
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          // Success
+          form.style.display = 'none';
+          successState.classList.add('visible'); // Custom animation in CSS
+          successRef.textContent = result.ref || 'CW-' + Math.floor(Math.random() * 900000);
+
+          showToast('success', 'İLETİM BAŞARILI', 'Sinyaliniz terminalimize ulaştı.');
+        } else {
+          throw new Error(result.error || 'Signal transmission failed.');
+        }
+
+      } catch (error) {
+        console.error('Error:', error);
+        showToast('error', 'BAĞLANTI HATASI', error.message + ' Lütfen daha sonra tekrar deneyin.');
+
+        // Reset button
+        submitText.textContent = originalText;
+        submitBtn.style.opacity = '1';
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
 </body>
 
 </html>

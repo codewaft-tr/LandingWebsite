@@ -555,9 +555,7 @@
             </div>
           </div>
           <div class="project-capsule reveal-scale">
-            <img class="project-capsule-img"
-              src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&h=380&fit=crop"
-              alt="Sentinel Support AI" />
+            <img class="project-capsule-img" src="assets/images/sentinel-ai-hero.png" alt="Sentinel Support AI" />
             <div class="project-capsule-bg"
               style="background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.05));"></div>
             <div class="project-capsule-content">
@@ -616,41 +614,37 @@
           <div class="team-grid stagger-children">
             <div class="team-card reveal">
               <div class="team-avatar-photo">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face"
-                  alt="Alex Chen" />
+                <img src="assets/images/oguz.jpeg" alt="Oğuz Özcan" />
               </div>
               <div class="team-info">
-                <h4 class="team-name">Alex Chen</h4>
+                <h4 class="team-name">Oğuz Özcan</h4>
                 <span class="team-role">Kıdemli Geliştirici</span>
               </div>
             </div>
             <div class="team-card reveal">
               <div class="team-avatar-photo">
-                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop&crop=face"
-                  alt="Sarah Park" />
+                <img src="assets/images/serhat.jpeg" alt="Serhat Kumaş" />
               </div>
               <div class="team-info">
-                <h4 class="team-name">Sarah Park</h4>
-                <span class="team-role">Genç Geliştirici</span>
+                <h4 class="team-name">Serhat Kumaş</h4>
+                <span class="team-role">Yazılım Geliştirici</span>
               </div>
             </div>
             <div class="team-card reveal">
               <div class="team-avatar-photo">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face"
-                  alt="Marcus Silva" />
+                <img src="assets/images/yunus.jpeg" alt="Yunus Emre Balkıs" />
               </div>
               <div class="team-info">
-                <h4 class="team-name">Marcus Silva</h4>
-                <span class="team-role">Genç Geliştirici</span>
+                <h4 class="team-name">Yunus Emre Balkıs</h4>
+                <span class="team-role">Yazılım Geliştirici</span>
               </div>
             </div>
             <div class="team-card reveal">
               <div class="team-avatar-photo">
-                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face"
-                  alt="Emma Johansson" />
+                <img src="assets/images/ugurtan.jpeg" alt="Hakan Uğurtan Yılmaz" />
               </div>
               <div class="team-info">
-                <h4 class="team-name">Emma Johansson</h4>
+                <h4 class="team-name">Hakan Uğurtan Yılmaz</h4>
                 <span class="team-role">Pazarlama Müdürü</span>
               </div>
             </div>
@@ -2024,13 +2018,18 @@
             const gw = 120, gx = soccerCanvas.width / 2 - gw / 2, gy = 10, gh = 50;
             if (ball.y - ball.r <= gy + gh && ball.x > gx && ball.x < gx + gw && ball.y > gy) {
               soccerScore++;
-              document.getElementById('soccer-score').textContent = 'Score: ' + soccerScore;
+              document.getElementById('soccer-score').textContent = 'Skor: ' + soccerScore;
               setTimeout(resetSoccerBall, 500);
               ball.active = false;
             }
             // Out of bounds
             if (ball.x < 0 || ball.x > soccerCanvas.width || ball.y < 0 || ball.y > soccerCanvas.height) {
               setTimeout(resetSoccerBall, 300);
+              ball.active = false;
+            }
+            // Stop if too slow
+            if (Math.abs(ball.vx) < 0.05 && Math.abs(ball.vy) < 0.05) {
+              setTimeout(resetSoccerBall, 500);
               ball.active = false;
             }
           }
@@ -2043,7 +2042,11 @@
           const rect = soccerCanvas.getBoundingClientRect();
           const mx = e.clientX - rect.left, my = e.clientY - rect.top;
           const dx = mx - ball.x, dy = my - ball.y;
-          if (Math.sqrt(dx * dx + dy * dy) < 30) { isDragging = true; dragStart = { x: mx, y: my }; }
+          if (Math.sqrt(dx * dx + dy * dy) < 60) {
+            isDragging = true;
+            dragStart = { x: mx, y: my };
+            soccerCanvas.setPointerCapture(e.pointerId);
+          }
         });
         soccerCanvas.addEventListener('pointermove', (e) => {
           if (!isDragging) return;
@@ -2186,7 +2189,7 @@
           if (bb.active) return;
           const rect = bbCanvas.getBoundingClientRect();
           const mx = e.clientX - rect.left, my = e.clientY - rect.top;
-          if (Math.sqrt((mx - bb.x) ** 2 + (my - bb.y) ** 2) < 35) { bbDragging = true; bbDrag = { x: mx, y: my }; }
+          if (Math.sqrt((mx - bb.x) ** 2 + (my - bb.y) ** 2) < 70) { bbDragging = true; bbDrag = { x: mx, y: my }; }
         });
         bbCanvas.addEventListener('pointermove', (e) => {
           if (!bbDragging) return;
@@ -2336,7 +2339,7 @@
           if (bowlBall.active) return;
           const rect = bowlCanvas.getBoundingClientRect();
           const mx = e.clientX - rect.left, my = e.clientY - rect.top;
-          if (Math.sqrt((mx - bowlBall.x) ** 2 + (my - bowlBall.y) ** 2) < 30) { bowlDragging = true; bowlDrag = { x: mx, y: my }; }
+          if (Math.sqrt((mx - bowlBall.x) ** 2 + (my - bowlBall.y) ** 2) < 70) { bowlDragging = true; bowlDrag = { x: mx, y: my }; }
         });
         bowlCanvas.addEventListener('pointermove', (e) => {
           if (!bowlDragging) return;
